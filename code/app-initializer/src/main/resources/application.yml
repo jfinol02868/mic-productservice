@@ -1,4 +1,0 @@
-spring-doc:
-  swagger-ui:
-    path: /web/swagger.html
-    #http://localhost:3030/swagger-ui-custom.html
