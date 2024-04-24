@@ -1,0 +1,33 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: productservice
+
+    #http://localhost:8080/v3/api-docs
+    #http://localhost:8080/swagger-ui/index.html
+  datasource:
+    url: '${DB_MIC_PRODUCTSERVICE}'
+    username: '${USER_MIC_PRODUCTSERVICE}'
+    password: '${PASS_MIC_PRODUCTSERVICE}'
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum:
+        pool-size: 5
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update # Opciones: create, create-drop, update, validate, none
+    show-sql: true # Para mostrar consultas SQL en la consola
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
