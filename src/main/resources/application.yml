@@ -6,9 +6,9 @@ spring:
     name: productservice
 
   datasource:
-    url: '${DB_MIC_PRODUCTSERVICE}'
-    username: '${USER_MIC_PRODUCTSERVICE}'
-    password: '${PASS_MIC_PRODUCTSERVICE}'
+    url: jdbc:postgresql://localhost:5433/micprdservc
+    username: umicprdservc
+    password: pmicprdservc
     driver-class-name: org.postgresql.Driver
     hikari:
       connection-timeout: 20000

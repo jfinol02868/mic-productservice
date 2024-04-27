@@ -1,17 +1,16 @@
 package com.tecomerce.productservice.infrastructure.bd.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Setter
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,18 +24,16 @@ public class ProductEntity implements Serializable {
     private String productName;
     private String productDescription;
     private Integer productStock;
-    private List<CategoryEntity> productCategory;
-    private List<Supplier> productSupplier;
-    private List<Image> productImages;
     private Double ProductWeight;
-    private List<Size> productSizes;
     private Integer productAvailability;
-    private List<Discount> productDiscounts;
-    private List<Discount> productPromotions;
-    private List<Taxe> productTaxes;
-    private List<Rating> productRating;
-    private List<String> productLabels;
-    private List<Campaign> campaigns;
-    private LocalDateTime productCreationDate;
-    private LocalDateTime productUpdateDate;
+    private ZonedDateTime productCreationDate;
+    private ZonedDateTime productUpdateDate;
+
+//    private List<Discount> productDiscounts;
+//    private List<Discount> productPromotions;
+//    private List<Taxe> productTaxes;
+//    private List<Rating> productRating;
+//    private List<String> productLabels;
+//    private List<Campaign> campaigns;
+//    private List<Size> productSizes;
 }

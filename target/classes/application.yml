@@ -5,12 +5,10 @@ spring:
   application:
     name: productservice
 
-    #http://localhost:8080/v3/api-docs
-    #http://localhost:8080/swagger-ui/index.html
   datasource:
-    url: '${DB_MIC_PRODUCTSERVICE}'
-    username: '${USER_MIC_PRODUCTSERVICE}'
-    password: '${PASS_MIC_PRODUCTSERVICE}'
+    url: jdbc:postgresql://localhost:5433/micprdservc
+    username: umicprdservc
+    password: pmicprdservc
     driver-class-name: org.postgresql.Driver
     hikari:
       connection-timeout: 20000
@@ -19,8 +17,8 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update # Opciones: create, create-drop, update, validate, none
-    show-sql: true # Para mostrar consultas SQL en la consola
+      ddl-auto: update
+    show-sql: true
 
 logging:
   level:

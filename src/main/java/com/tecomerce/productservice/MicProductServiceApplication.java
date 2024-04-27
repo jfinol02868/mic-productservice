@@ -11,20 +11,12 @@ import java.util.List;
 @SpringBootApplication
 public class MicProductServiceApplication implements CommandLineRunner {
 
-	private final ProductRepository productRepository;
-
-    public MicProductServiceApplication(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-
     public static void main(String[] args) {
 		SpringApplication.run(MicProductServiceApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		List<ProductEntity> products = productRepository.findAll();
 
-		products.forEach( p -> p.toString());
 	}
 }
