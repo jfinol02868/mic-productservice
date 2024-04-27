@@ -1,13 +1,4 @@
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/entity/ProductEntity.java
 /home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/MicProductServiceApplication.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/entity/Supplier.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/entity/CategoryEntity.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/entity/Discount.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/entity/Money.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/entity/Address.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/entity/Size.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/entity/Taxe.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/entity/Campaign.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/repository/ProductRepository.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/entity/Rating.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/bd/model/entity/Image.java
+/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/rest/api/service/ProductApi.java
+/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/rest/api/service/dto/ProductDTO.java
+/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/rest/api/controller/ProductController.java
