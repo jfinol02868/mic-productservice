@@ -29,7 +29,7 @@ public class ProductDTO implements Serializable  {
     private Integer productStock;
 
     @Schema(example = "0.10")
-    private Double ProductWeight;
+    private Double productWeight;
 
     @Schema(example = "2000")
     private Integer productAvailability;

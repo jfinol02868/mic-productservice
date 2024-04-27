@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public interface ProductApi {
 
@@ -21,6 +23,18 @@ public interface ProductApi {
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
     default ResponseEntity<List<ProductDTO>> getAll() {
-       return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+        return new ResponseEntity<>(List.of(
+                ProductDTO.builder()
+                        .id(UUID.randomUUID())
+                        .productName("Lapiz")
+                        .productDescription("Lapiz de grafito para escribir en cuaderno tradicional")
+                        .productStock(2000)
+                        .productAvailability(2000)
+                        .productCreationDate(ZonedDateTime.now())
+                        .productUpdateDate(ZonedDateTime.now().plusHours(2))
+                        .productWeight(0.10)
+                        .build()
+        ),HttpStatus.OK);
     }
 }
