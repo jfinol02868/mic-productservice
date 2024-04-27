@@ -14,12 +14,12 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "products")
+//@Entity(name = "products")
 public class ProductEntity implements Serializable {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.UUID)
+    //@Id
+    //@Column(name = "id")
+    //@GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String productName;
     private String productDescription;
