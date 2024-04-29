@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public interface ProductPersistence {
 
-    Product findById(String id);
+    Optional<Product> findById(String id);
     List<Product> findAll();
     Product save(Product product);
-    Void deleteById(String id);
+    void deleteById(String id);
 }

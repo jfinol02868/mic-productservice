@@ -8,16 +8,14 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ProductEntityMapper {
-
-    final static ProductEntityMapper PRODUCT_ENTITY_MAPPER = Mappers.getMapper(ProductEntityMapper.class);
 
     public ProductEntity toEntity(Product value);
 
     public Product toModel(ProductEntity value);
 
-    public List<ProductEntity> toEntities(List<Product> values);
+    public List<ProductEntity> toEntityList(List<Product> values);
 
-    public List<Product> toModels(List<ProductEntity> values);
+    public List<Product> toModelList(List<ProductEntity> values);
 }

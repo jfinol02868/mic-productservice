@@ -7,10 +7,8 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ProductDTOMapper {
-
-    static final ProductDTOMapper PRODUCT_DTO_MAPPER = Mappers.getMapper(ProductDTOMapper.class);
 
     public ProductDTO toDTO(Product value);
 

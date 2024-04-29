@@ -5,12 +5,14 @@ import com.tecomerce.productservice.infrastructure.adapter.output.persistence.en
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-29T21:00:26+0200",
+    date = "2024-04-29T23:49:17+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.10 (Private Build)"
 )
+@Component
 public class ProductEntityMapperImpl implements ProductEntityMapper {
 
     @Override
@@ -54,7 +56,7 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
     }
 
     @Override
-    public List<ProductEntity> toEntities(List<Product> values) {
+    public List<ProductEntity> toEntityList(List<Product> values) {
         if ( values == null ) {
             return null;
         }
@@ -68,7 +70,7 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
     }
 
     @Override
-    public List<Product> toModels(List<ProductEntity> values) {
+    public List<Product> toModelList(List<ProductEntity> values) {
         if ( values == null ) {
             return null;
         }

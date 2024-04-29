@@ -2,40 +2,42 @@ package com.tecomerce.productservice.infrastructure.adapter.output.persistence.r
 
 import com.tecomerce.productservice.application.ports.output.ProductPersistence;
 import com.tecomerce.productservice.domain.model.Product;
+import com.tecomerce.productservice.infrastructure.adapter.output.persistence.mapper.ProductEntityMapper;
 import com.tecomerce.productservice.infrastructure.adapter.output.persistence.repository.ProductRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
-import static com.tecomerce.productservice.infrastructure.adapter.output.persistence.mapper.ProductEntityMapper.PRODUCT_ENTITY_MAPPER;
 
-@Service
+@Repository
 public class ProductPersistenceAdapter implements ProductPersistence {
 
-    private final ProductRepository producRepository;
+    private final ProductRepository productRepository;
+    private final ProductEntityMapper mapper;
 
-    public ProductPersistenceAdapter(ProductRepository productEntityRepository) {
-        this.producRepository = productEntityRepository;
+    public ProductPersistenceAdapter(ProductRepository productEntityRepository, ProductEntityMapper mapper) {
+        this.productRepository = productEntityRepository;
+        this.mapper = mapper;
     }
 
     @Override
-    public Product findById(String id) {
-        return PRODUCT_ENTITY_MAPPER.toModel(producRepository.findById(id).get());
+    public Optional<Product> findById(String id) {
+        return productRepository.findById(id).map(mapper::toModel);
     }
 
     @Override
     public List<Product> findAll() {
-        return PRODUCT_ENTITY_MAPPER.toModels(producRepository.findAll());
+        return mapper.toModelList(productRepository.findAll());
     }
 
     @Override
     public Product save(Product product) {
-        return PRODUCT_ENTITY_MAPPER.toModel(producRepository.save(PRODUCT_ENTITY_MAPPER.toEntity(product)));
+        return mapper.toModel(productRepository.save(mapper.toEntity(product)));
     }
 
     @Override
-    public Void deleteById(String id) {
-        producRepository.deleteById(id);
-        return null;
+    public void deleteById(String id) {
+        productRepository.findById(id);
     }
 }

@@ -5,12 +5,14 @@ import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dt
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-29T21:00:27+0200",
+    date = "2024-04-29T23:49:17+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.10 (Private Build)"
 )
+@Component
 public class ProductDTOMapperImpl implements ProductDTOMapper {
 
     @Override

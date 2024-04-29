@@ -8,5 +8,5 @@ public interface BaseCrudUseCase<T> {
     default List<T> findAll(){ return null;}
     default T save(T value) { return null;};
     default T update(String id, T value) { return null;};
-    default Void deleteById(String id){ return null;};
+    default void deleteById(String id){ };
 }
