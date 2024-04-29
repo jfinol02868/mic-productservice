@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
-
-import static com.tecomerce.productservice.infrastructure.adapter.output.persistence.mapper.ProductEntityMapper.PRODUCT_ENTITY_MAPPER;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +37,7 @@ public class ProductCrudUseCaseImpl implements ProductCrudUseCase {
         if(Objects.isNull(product)) {
             System.out.println("El registro es nulo.");
         }
+        BeanUtils.copyProperties(value, product);
         return productRepository.save(product);
     }
 

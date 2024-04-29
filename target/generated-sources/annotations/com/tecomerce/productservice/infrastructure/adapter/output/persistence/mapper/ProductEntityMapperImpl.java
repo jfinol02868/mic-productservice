@@ -4,12 +4,11 @@ import com.tecomerce.productservice.domain.model.Product;
 import com.tecomerce.productservice.infrastructure.adapter.output.persistence.entity.ProductEntity;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-29T20:47:55+0200",
+    date = "2024-04-29T21:00:26+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.10 (Private Build)"
 )
 public class ProductEntityMapperImpl implements ProductEntityMapper {
@@ -22,9 +21,7 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
 
         ProductEntity.ProductEntityBuilder productEntity = ProductEntity.builder();
 
-        if ( value.getId() != null ) {
-            productEntity.id( value.getId().toString() );
-        }
+        productEntity.id( value.getId() );
         productEntity.productName( value.getProductName() );
         productEntity.productDescription( value.getProductDescription() );
         productEntity.productStock( value.getProductStock() );
@@ -44,9 +41,7 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
 
         Product.ProductBuilder product = Product.builder();
 
-        if ( value.getId() != null ) {
-            product.id( UUID.fromString( value.getId() ) );
-        }
+        product.id( value.getId() );
         product.productName( value.getProductName() );
         product.productDescription( value.getProductDescription() );
         product.productStock( value.getProductStock() );

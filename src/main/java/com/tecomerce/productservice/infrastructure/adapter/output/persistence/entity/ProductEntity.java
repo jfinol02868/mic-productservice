@@ -1,10 +1,10 @@
 package com.tecomerce.productservice.infrastructure.adapter.output.persistence.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Builder
 @Getter

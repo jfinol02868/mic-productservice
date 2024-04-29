@@ -3,7 +3,6 @@ package com.tecomerce.productservice.domain.model;
 import lombok.*;
 
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Builder
 @Getter
@@ -12,7 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Product {
 
-    private UUID id;
+    private String id;
 
     private String productName;
 

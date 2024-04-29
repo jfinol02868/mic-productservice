@@ -30,8 +30,7 @@ public class ProductPersistenceAdapter implements ProductPersistence {
 
     @Override
     public Product save(Product product) {
-        return PRODUCT_ENTITY_MAPPER.toModel(
-                producRepository.save(PRODUCT_ENTITY_MAPPER.toEntity(product)));
+        return PRODUCT_ENTITY_MAPPER.toModel(producRepository.save(PRODUCT_ENTITY_MAPPER.toEntity(product)));
     }
 
     @Override
