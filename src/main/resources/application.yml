@@ -9,9 +9,9 @@ spring:
     allow-circular-references: true
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/railway
-    username: '${DB_USER}'
-    password: '${DB_PASSWORD}'
+    url: jdbc:postgresql://monorail.proxy.rlwy.net:45438/railway
+    username: postgres
+    password: ObcggQODCkrLSYnzzLbvkieYDXMpmbsz
     driver-class-name: org.postgresql.Driver
     hikari:
       connection-timeout: 20000
