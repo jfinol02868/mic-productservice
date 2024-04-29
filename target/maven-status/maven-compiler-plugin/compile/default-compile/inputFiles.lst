@@ -1,6 +1,5 @@
 /home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/adapter/input/rest/service/ProductApi.java
 /home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/MicProductServiceApplication.java
-/home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/config/CorsFilterConfiguration.java
 /home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/infrastructure/adapter/input/rest/ProductController.java
 /home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/application/ports/output/ProductPersistence.java
 /home/jfinol02/Documentos/tecomerce/mic-productservice/src/main/java/com/tecomerce/productservice/domain/exception/ProductNotFoundException.java

@@ -4,11 +4,12 @@ import com.tecomerce.productservice.domain.model.Product;
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.ProductDTO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-29T20:10:38+0200",
+    date = "2024-04-29T20:47:55+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.10 (Private Build)"
 )
 public class ProductDTOMapperImpl implements ProductDTOMapper {
@@ -21,7 +22,9 @@ public class ProductDTOMapperImpl implements ProductDTOMapper {
 
         ProductDTO.ProductDTOBuilder productDTO = ProductDTO.builder();
 
-        productDTO.id( value.getId() );
+        if ( value.getId() != null ) {
+            productDTO.id( value.getId().toString() );
+        }
         productDTO.productName( value.getProductName() );
         productDTO.productDescription( value.getProductDescription() );
         productDTO.productStock( value.getProductStock() );
@@ -41,7 +44,9 @@ public class ProductDTOMapperImpl implements ProductDTOMapper {
 
         Product.ProductBuilder product = Product.builder();
 
-        product.id( value.getId() );
+        if ( value.getId() != null ) {
+            product.id( UUID.fromString( value.getId() ) );
+        }
         product.productName( value.getProductName() );
         product.productDescription( value.getProductDescription() );
         product.productStock( value.getProductStock() );

@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Data
 @Builder
@@ -18,7 +17,7 @@ import java.util.UUID;
 public class ProductDTO implements Serializable  {
 
     @Schema(example = "bc36bacd-b110-4aa3-a083-fe9c5a3404b6")
-    private UUID id;
+    private String id;
 
     @Schema(example = "Lapiz")
     @NotBlank(message =  "Field product name cannot be empty or null.")
