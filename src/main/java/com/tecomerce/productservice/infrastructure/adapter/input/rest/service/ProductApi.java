@@ -2,11 +2,13 @@ package com.tecomerce.productservice.infrastructure.adapter.input.rest.service;
 
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.MessageResponse;
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.ProductDTO;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.servers.Server;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
