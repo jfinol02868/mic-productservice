@@ -6,37 +6,37 @@ import com.tecomerce.productservice.infrastructure.adapter.output.persistence.re
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 import static com.tecomerce.productservice.infrastructure.adapter.output.persistence.mapper.ProductEntityMapper.PRODUCT_ENTITY_MAPPER;
 
 @Service
 public class ProductPersistenceAdapter implements ProductPersistence {
 
-    private final ProductRepository productEntityRepository;
+    private final ProductRepository producRepository;
 
     public ProductPersistenceAdapter(ProductRepository productEntityRepository) {
-        this.productEntityRepository = productEntityRepository;
+        this.producRepository = productEntityRepository;
     }
 
     @Override
-    public Optional<Product> findById(String id) {
-        return Optional.empty();
+    public Product findById(String id) {
+        return PRODUCT_ENTITY_MAPPER.toModel(producRepository.findById(id).get());
     }
 
     @Override
     public List<Product> findAll() {
-        return PRODUCT_ENTITY_MAPPER.toModels(productEntityRepository.findAll());
+        return PRODUCT_ENTITY_MAPPER.toModels(producRepository.findAll());
     }
 
     @Override
     public Product save(Product product) {
-        return null;
+        return PRODUCT_ENTITY_MAPPER.toModel(
+                producRepository.save(PRODUCT_ENTITY_MAPPER.toEntity(product)));
     }
 
     @Override
-    public void deleteById(String id) {
-
+    public Void deleteById(String id) {
+        producRepository.deleteById(id);
+        return null;
     }
 }

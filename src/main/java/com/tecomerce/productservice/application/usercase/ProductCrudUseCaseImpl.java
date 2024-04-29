@@ -4,9 +4,11 @@ import com.tecomerce.productservice.application.ports.input.ProductCrudUseCase;
 import com.tecomerce.productservice.application.ports.output.ProductPersistence;
 import com.tecomerce.productservice.domain.model.Product;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import static com.tecomerce.productservice.infrastructure.adapter.output.persistence.mapper.ProductEntityMapper.PRODUCT_ENTITY_MAPPER;
@@ -24,22 +26,25 @@ public class ProductCrudUseCaseImpl implements ProductCrudUseCase {
 
     @Override
     public Product findById(String id) {
-        return  null;
-
+        return  productRepository.findById(id);
     }
 
     @Override
     public Product save(Product value) {
-        return ProductCrudUseCase.super.save(value);
+        return productRepository.save(value);
     }
 
     @Override
     public Product update(String id, Product value) {
-        return ProductCrudUseCase.super.update(id, value);
+        Product  product = productRepository.findById(id);
+        if(Objects.isNull(product)) {
+            System.out.println("El registro es nulo.");
+        }
+        return productRepository.save(product);
     }
 
     @Override
     public Void deleteById(String id) {
-        return ProductCrudUseCase.super.deleteById(id);
+        return productRepository.deleteById(id);
     }
 }

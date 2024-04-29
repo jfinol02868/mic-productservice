@@ -4,12 +4,11 @@ import com.tecomerce.productservice.domain.model.Product;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface ProductPersistence {
 
-    Optional<Product> findById(String id);
+    Product findById(String id);
     List<Product> findAll();
     Product save(Product product);
-    void deleteById(String id);
+    Void deleteById(String id);
 }
