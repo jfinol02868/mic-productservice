@@ -21,7 +21,7 @@ public class ProductPersistenceAdapter implements ProductPersistence {
     }
 
     @Override
-    public Optional<Product> findById(Long id) {
+    public Optional<Product> findById(String id) {
         return Optional.empty();
     }
 
@@ -36,7 +36,7 @@ public class ProductPersistenceAdapter implements ProductPersistence {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteById(String id) {
 
     }
 }

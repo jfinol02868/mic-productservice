@@ -8,8 +8,8 @@ import java.util.UUID;
 
 public interface ProductPersistence {
 
-    Optional<Product> findById(Long id);
+    Optional<Product> findById(String id);
     List<Product> findAll();
     Product save(Product product);
-    void deleteById(UUID id);
+    void deleteById(String id);
 }
