@@ -1,7 +1,7 @@
-package com.tecomerce.productservice.infrastructure.rest.api.controller;
+package com.tecomerce.productservice.infrastructure.adapter.input.rest;
 
-import com.tecomerce.productservice.infrastructure.rest.api.service.ProductApi;
-import com.tecomerce.productservice.infrastructure.rest.api.service.dto.ProductDTO;
+import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.ProductApi;
+import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.ProductDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

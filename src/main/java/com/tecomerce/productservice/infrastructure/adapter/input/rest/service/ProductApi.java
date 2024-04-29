@@ -1,7 +1,7 @@
-package com.tecomerce.productservice.infrastructure.rest.api.service;
+package com.tecomerce.productservice.infrastructure.adapter.input.rest.service;
 
-import com.tecomerce.productservice.infrastructure.rest.api.service.dto.MessageResponse;
-import com.tecomerce.productservice.infrastructure.rest.api.service.dto.ProductDTO;
+import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.MessageResponse;
+import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.ProductDTO;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

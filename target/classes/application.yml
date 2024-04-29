@@ -5,27 +5,27 @@ spring:
   application:
     name: productservice
 
-#  datasource:
-#    url: jdbc:postgresql://localhost:5433/micprdservc
-#    username: umicprdservc
-#    password: pmicprdservc
-#    driver-class-name: org.postgresql.Driver
-#    hikari:
-#      connection-timeout: 20000
-#      maximum:
-#        pool-size: 5
-#  jpa:
-#    database-platform: org.hibernate.dialect.PostgreSQLDialect
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: true
+  datasource:
+    url: jdbc:postgresql://monorail.proxy.rlwy.net:45438/railway
+    username: '${PGUSER}'
+    password: '${PGPASSWORD}'
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum:
+        pool-size: 5
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
-#logging:
-#  level:
-#    org:
-#      hibernate:
-#        SQL: DEBUG
-#        type:
-#          descriptor:
-#            sql:
-#              BasicBinder: TRACE
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE

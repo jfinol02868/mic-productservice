@@ -1,4 +1,4 @@
-package com.tecomerce.productservice.infrastructure.rest.api.service.dto;
+package com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
