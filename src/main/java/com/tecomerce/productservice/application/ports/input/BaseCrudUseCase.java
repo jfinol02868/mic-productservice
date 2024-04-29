@@ -2,7 +2,7 @@ package com.tecomerce.productservice.application.ports.input;
 
 import java.util.List;
 
-public interface BaseCRUDUseCase<T> {
+public interface BaseCrudUseCase<T> {
 
     default T findById(String id){ return null;}
     default List<T> findAll(){ return null;}

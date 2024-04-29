@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ProductRepository {
+public interface ProductPersistence {
 
     Optional<Product> findById(Long id);
     List<Product> findAll();

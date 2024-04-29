@@ -5,6 +5,9 @@ spring:
   application:
     name: productservice
 
+  main:
+    allow-circular-references: true
+
   datasource:
     url: jdbc:postgresql://monorail.proxy.rlwy.net:45438/railway
     username: '${PGUSER}'
