@@ -26,7 +26,7 @@ public class ProductCrudUseCaseImpl implements ProductCrudUseCase {
 
     @Override
     public Product findById(String id) {
-        return  productRepository.findById(id);
+        return productRepository.findById(id);
     }
 
     @Override

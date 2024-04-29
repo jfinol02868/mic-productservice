@@ -38,7 +38,7 @@ public interface ProductApi {
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
     @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    default ResponseEntity<ProductDTO> findById(@Valid @NotNull @PathVariable String id) {
+    default ResponseEntity<ProductDTO> findById(@NotNull @PathVariable String id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
     @GetMapping
@@ -59,7 +59,7 @@ public interface ProductApi {
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
     @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    default ResponseEntity<ProductDTO> update(@Valid @RequestBody ProductDTO productDTO, @Valid @NotNull @PathVariable String id) {
+    default ResponseEntity<ProductDTO> update(@Valid @RequestBody ProductDTO productDTO, @NotNull @PathVariable String id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
@@ -71,7 +71,7 @@ public interface ProductApi {
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
     @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    default ResponseEntity<Void> delete(@Valid @NotNull @PathVariable String id) {
+    default ResponseEntity<Void> delete(@NotNull @PathVariable String id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
