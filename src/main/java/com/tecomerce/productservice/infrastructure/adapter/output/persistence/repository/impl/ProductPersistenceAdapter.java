@@ -4,10 +4,12 @@ import com.tecomerce.productservice.application.ports.output.ProductPersistence;
 import com.tecomerce.productservice.domain.model.Product;
 import com.tecomerce.productservice.infrastructure.adapter.output.persistence.mapper.ProductEntityMapper;
 import com.tecomerce.productservice.infrastructure.adapter.output.persistence.repository.ProductRepository;
+import org.apache.catalina.util.StringUtil;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 @Repository
@@ -33,6 +35,7 @@ public class ProductPersistenceAdapter implements ProductPersistence {
 
     @Override
     public Product save(Product product) {
+        product.setId(UUID.randomUUID().toString());
         return mapper.toModel(productRepository.save(mapper.toEntity(product)));
     }
 

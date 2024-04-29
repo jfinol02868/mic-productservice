@@ -17,7 +17,7 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 public class ProductDTO implements Serializable  {
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Schema(example = "bc36bacd-b110-4aa3-a083-fe9c5a3404b6")
     private String id;
 
