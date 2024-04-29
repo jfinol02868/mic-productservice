@@ -17,7 +17,6 @@ import static com.tecomerce.productservice.infrastructure.adapter.input.rest.map
 @RestController
 @AllArgsConstructor
 @RequestMapping("/v1/products")
-@CrossOrigin(origins = "http://mic-productservice-production.up.railway.app/v1/**")
 public class ProductController implements ProductApi {
 
     private  final ProductCrudUseCase productUseCase;
