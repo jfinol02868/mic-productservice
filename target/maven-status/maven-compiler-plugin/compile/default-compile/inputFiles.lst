@@ -7,6 +7,7 @@ C:\vamos\mic-productservice\src\main\java\com\tecomerce\productservice\applicati
 C:\vamos\mic-productservice\src\main\java\com\tecomerce\productservice\infrastructure\adapter\output\persistence\repository\ProductRepository.java
 C:\vamos\mic-productservice\src\main\java\com\tecomerce\productservice\application\ports\input\ProductCrudUseCase.java
 C:\vamos\mic-productservice\src\main\java\com\tecomerce\productservice\infrastructure\adapter\input\rest\service\dto\MessageResponse.java
+C:\vamos\mic-productservice\src\main\java\com\tecomerce\productservice\config\CorsFilterConfiguration.java
 C:\vamos\mic-productservice\src\main\java\com\tecomerce\productservice\application\ports\input\BaseCrudUseCase.java
 C:\vamos\mic-productservice\src\main\java\com\tecomerce\productservice\domain\exception\ProductNotFoundException.java
 C:\vamos\mic-productservice\src\main\java\com\tecomerce\productservice\infrastructure\adapter\input\rest\service\dto\ProductDTO.java
