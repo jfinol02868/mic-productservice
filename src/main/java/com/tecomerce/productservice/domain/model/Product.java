@@ -12,19 +12,12 @@ import java.time.ZonedDateTime;
 public class Product {
 
     private String id;
-
     private String productName;
-
     private String productDescription;
-
     private Integer productStock;
-
     private Double productWeight;
-
     private Integer productAvailability;
-
     private ZonedDateTime productCreationDate;
-
     private ZonedDateTime productUpdateDate;
 
 }

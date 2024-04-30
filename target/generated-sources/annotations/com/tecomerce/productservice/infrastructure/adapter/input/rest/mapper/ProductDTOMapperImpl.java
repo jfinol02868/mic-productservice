@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-29T23:49:17+0200",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.10 (Private Build)"
+    date = "2024-04-30T11:32:49+0200",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.7 (Eclipse Adoptium)"
 )
 @Component
 public class ProductDTOMapperImpl implements ProductDTOMapper {
@@ -56,7 +56,7 @@ public class ProductDTOMapperImpl implements ProductDTOMapper {
     }
 
     @Override
-    public List<ProductDTO> toDTOs(List<Product> values) {
+    public List<ProductDTO> toDTOList(List<Product> values) {
         if ( values == null ) {
             return null;
         }
@@ -70,7 +70,7 @@ public class ProductDTOMapperImpl implements ProductDTOMapper {
     }
 
     @Override
-    public List<Product> toModels(List<ProductDTO> value) {
+    public List<Product> toModelList(List<ProductDTO> value) {
         if ( value == null ) {
             return null;
         }

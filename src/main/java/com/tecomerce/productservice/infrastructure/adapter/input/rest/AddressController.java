@@ -1,8 +1,14 @@
 package com.tecomerce.productservice.infrastructure.adapter.input.rest;
 
+import com.tecomerce.productservice.application.ports.input.AddressCrudUseCase;
+import com.tecomerce.productservice.application.ports.input.CategoryCrudUseCase;
+import com.tecomerce.productservice.infrastructure.adapter.input.rest.mapper.AddressDTOMapper;
+import com.tecomerce.productservice.infrastructure.adapter.input.rest.mapper.CategoryDTOMapper;
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.AddressApi;
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.AddressDTO;
+import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.CategoryDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,28 +20,37 @@ import java.util.List;
 @RequestMapping("/v1/address")
 public class AddressController implements AddressApi {
 
+    private final AddressDTOMapper mapper;
+    private final AddressCrudUseCase useCase;
+
+    public AddressController(AddressDTOMapper mapper, AddressCrudUseCase useCase) {
+        this.mapper = mapper;
+        this.useCase = useCase;
+    }
+
     @Override
     public ResponseEntity<AddressDTO> create(AddressDTO addressDTO) {
-        return AddressApi.super.create(addressDTO);
+        return new ResponseEntity<>(mapper.toDTO(useCase.save(mapper.toModel(addressDTO))), HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<AddressDTO> findById(String id) {
-        return AddressApi.super.findById(id);
+        return new ResponseEntity<>(mapper.toDTO(useCase.findById(id)), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<List<AddressDTO>> findAll() {
-        return AddressApi.super.findAll();
+        return new ResponseEntity<>(mapper.toDTOList(useCase.findAll()), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<AddressDTO> update(AddressDTO addressDTO, String id) {
-        return AddressApi.super.update(addressDTO, id);
+        return new ResponseEntity<>(mapper.toDTO(useCase.update(id, mapper.toModel(addressDTO))), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Void> delete(String id) {
-        return AddressApi.super.delete(id);
+        useCase.deleteById(id);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 }

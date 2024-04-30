@@ -3,7 +3,6 @@ package com.tecomerce.productservice.infrastructure.adapter.input.rest.mapper;
 import com.tecomerce.productservice.domain.model.Product;
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.ProductDTO;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
@@ -14,8 +13,8 @@ public interface ProductDTOMapper {
 
     public Product toModel(ProductDTO value);
 
-    public  List<ProductDTO> toDTOs( List<Product> values);
+    public  List<ProductDTO> toDTOList(List<Product> values);
 
-    public List<Product> toModels( List<ProductDTO> value);
+    public List<Product> toModelList(List<ProductDTO> value);
 
 }

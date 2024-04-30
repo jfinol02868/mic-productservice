@@ -1,5 +1,6 @@
 package com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,10 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AddressDTO implements Serializable {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String id;
     private String street;
     private String number;
     private String city;

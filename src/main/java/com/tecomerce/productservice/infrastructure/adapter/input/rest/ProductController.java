@@ -5,7 +5,6 @@ import com.tecomerce.productservice.infrastructure.adapter.input.rest.mapper.Pro
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.ProductApi;
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.ProductDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +28,7 @@ public class ProductController implements ProductApi {
 
     @Override
     public ResponseEntity<List<ProductDTO>> findAll() {
-        return new ResponseEntity<>(mapper.toDTOs(productUseCase.findAll()), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDTOList(productUseCase.findAll()), HttpStatus.OK);
     }
 
     @Override
