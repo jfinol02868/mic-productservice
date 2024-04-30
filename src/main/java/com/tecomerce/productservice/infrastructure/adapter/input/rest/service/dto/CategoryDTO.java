@@ -17,23 +17,23 @@ import java.util.UUID;
 public class CategoryDTO implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Schema(example = "")
+    @Schema(example = "bc36bacd-b110-4aa3-a083-fe9c5a3404b6")
     private String id;
-    @Schema(example = "")
+    @Schema(example = "Shoes")
     private String categoryName;
-    @Schema(example = "")
+    @Schema(example = "Shoes for running")
     private String categoryDescription;
-    @Schema(example = "")
+    @Schema(example = "PENDING")
     private String categoryParent;
-    @Schema(example = "")
+    @Schema(example = "2024-05-01T20:35:10")
     private LocalDateTime categoryCreation;
-    @Schema(example = "")
+    @Schema(example = "2024-05-01T20:35:10")
     private LocalDateTime categoryUpdate;
-    @Schema(example = "")
+    @Schema(example = "http://bucket/pet.png")
     private List<String> categoryUrlImages;
-    @Schema(example = "")
+    @Schema(example = "Active")
     private String categoryStatus;
-    @Schema(example = "")
+    @Schema(example = "['NEW', 'RUNNING']")
     private List<String> categoryLabels;
 
 }
