@@ -35,9 +35,15 @@ public class AddressCrudUseCaseImpl implements AddressCrudUseCase {
 
     @Override
     public Address update(String id, Address value) {
-        Address address = persistence.findById(id).orElseThrow(EntityNotFoundException::new);
-        BeanUtils.copyProperties(value, address);
-        return persistence.save(address);
+        return persistence.findById(id).map( a -> {
+            a.setId(id);
+            a.setStreet(value.getStreet());
+            a.setNumber(value.getNumber());
+            a.setCountry(value.getCountry());
+            a.setCity(value.getCity());
+            a.setPostalCode(value.getPostalCode());
+            return persistence.save(a);
+        }) .orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
