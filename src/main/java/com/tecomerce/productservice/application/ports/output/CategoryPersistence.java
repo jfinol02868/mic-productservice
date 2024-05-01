@@ -8,7 +8,10 @@ import java.util.Optional;
 public interface CategoryPersistence {
 
     Optional<Category> findById(String id);
+
     List<Category> findAll();
+
     Category save(Category category);
+
     void deleteById(String id);
 }

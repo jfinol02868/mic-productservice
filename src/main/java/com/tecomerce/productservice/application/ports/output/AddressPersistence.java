@@ -8,7 +8,10 @@ import java.util.Optional;
 public interface AddressPersistence {
 
     Optional<Address> findById(String id);
+
     List<Address> findAll();
+
     Address save(Address address);
+
     void deleteById(String id);
 }
