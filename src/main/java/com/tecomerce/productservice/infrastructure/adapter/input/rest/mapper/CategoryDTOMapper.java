@@ -1,9 +1,7 @@
 package com.tecomerce.productservice.infrastructure.adapter.input.rest.mapper;
 
 import com.tecomerce.productservice.domain.model.Category;
-import com.tecomerce.productservice.domain.model.Product;
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.CategoryDTO;
-import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.ProductDTO;
 import org.mapstruct.Mapper;
 
 import java.util.List;

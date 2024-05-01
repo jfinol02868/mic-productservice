@@ -1,12 +1,9 @@
 package com.tecomerce.productservice.infrastructure.adapter.input.rest;
 
 import com.tecomerce.productservice.application.ports.input.AddressCrudUseCase;
-import com.tecomerce.productservice.application.ports.input.CategoryCrudUseCase;
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.mapper.AddressDTOMapper;
-import com.tecomerce.productservice.infrastructure.adapter.input.rest.mapper.CategoryDTOMapper;
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.AddressApi;
 import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.AddressDTO;
-import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dto.CategoryDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
