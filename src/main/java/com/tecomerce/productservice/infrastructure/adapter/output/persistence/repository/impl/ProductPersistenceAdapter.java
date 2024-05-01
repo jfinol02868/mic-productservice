@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 
 @Repository
@@ -34,12 +33,11 @@ public class ProductPersistenceAdapter implements ProductPersistence {
 
     @Override
     public Product save(Product product) {
-        product.setId(UUID.randomUUID().toString());
         return mapper.toModel(repository.save(mapper.toEntity(product)));
     }
 
     @Override
     public void deleteById(String id) {
-        repository.findById(id);
+        repository.deleteById(id);
     }
 }

@@ -1,7 +1,9 @@
 package com.tecomerce.productservice.domain.model;
 
+import jakarta.persistence.PrePersist;
 import lombok.*;
 
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 @Builder

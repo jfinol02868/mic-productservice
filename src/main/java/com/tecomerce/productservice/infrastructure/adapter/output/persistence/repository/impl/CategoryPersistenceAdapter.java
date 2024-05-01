@@ -6,6 +6,8 @@ import com.tecomerce.productservice.infrastructure.adapter.output.persistence.ma
 import com.tecomerce.productservice.infrastructure.adapter.output.persistence.repository.CategoryRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -33,7 +35,6 @@ public class CategoryPersistenceAdapter implements CategoryPersistence {
 
     @Override
     public Category save(Category category) {
-        category.setId(UUID.randomUUID().toString());
         return mapper.toModel(repository.save(mapper.toEntity(category)));
     }
 

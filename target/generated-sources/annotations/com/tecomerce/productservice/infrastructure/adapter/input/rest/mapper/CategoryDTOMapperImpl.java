@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-01T13:14:23+0200",
+    date = "2024-05-01T15:52:42+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.10 (Private Build)"
 )
 @Component
@@ -27,8 +27,6 @@ public class CategoryDTOMapperImpl implements CategoryDTOMapper {
         categoryDTO.categoryName( category.getCategoryName() );
         categoryDTO.categoryDescription( category.getCategoryDescription() );
         categoryDTO.categoryParent( category.getCategoryParent() );
-        categoryDTO.categoryCreation( category.getCategoryCreation() );
-        categoryDTO.categoryUpdate( category.getCategoryUpdate() );
         List<String> list = category.getCategoryUrlImages();
         if ( list != null ) {
             categoryDTO.categoryUrlImages( new ArrayList<String>( list ) );
@@ -38,6 +36,8 @@ public class CategoryDTOMapperImpl implements CategoryDTOMapper {
         if ( list1 != null ) {
             categoryDTO.categoryLabels( new ArrayList<String>( list1 ) );
         }
+        categoryDTO.categoryCreationDate( category.getCategoryCreationDate() );
+        categoryDTO.categoryUpdateDate( category.getCategoryUpdateDate() );
 
         return categoryDTO.build();
     }
@@ -54,8 +54,8 @@ public class CategoryDTOMapperImpl implements CategoryDTOMapper {
         category.categoryName( categoryDTO.getCategoryName() );
         category.categoryDescription( categoryDTO.getCategoryDescription() );
         category.categoryParent( categoryDTO.getCategoryParent() );
-        category.categoryCreation( categoryDTO.getCategoryCreation() );
-        category.categoryUpdate( categoryDTO.getCategoryUpdate() );
+        category.categoryCreationDate( categoryDTO.getCategoryCreationDate() );
+        category.categoryUpdateDate( categoryDTO.getCategoryUpdateDate() );
         List<String> list = categoryDTO.getCategoryUrlImages();
         if ( list != null ) {
             category.categoryUrlImages( new ArrayList<String>( list ) );

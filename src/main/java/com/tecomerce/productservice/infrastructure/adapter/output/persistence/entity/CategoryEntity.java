@@ -1,10 +1,10 @@
 package com.tecomerce.productservice.infrastructure.adapter.output.persistence.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Setter
@@ -16,13 +16,19 @@ import java.util.List;
 public class CategoryEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String categoryName;
     private String categoryDescription;
     private String categoryParent;
-    private LocalDateTime categoryCreation;
-    private LocalDateTime categoryUpdate;
+    private ZonedDateTime categoryCreationDate;
+    private ZonedDateTime categoryUpdateDate;
     private List<String> categoryUrlImages;
     private String categoryStatus;
     private List<String> categoryLabels;
+
+    @PrePersist
+    private void onCreated() {
+        this.categoryCreationDate = ZonedDateTime.now(ZoneId.of("UTC"));
+    }
 }
