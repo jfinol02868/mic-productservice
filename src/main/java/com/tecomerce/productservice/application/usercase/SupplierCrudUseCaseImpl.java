@@ -3,7 +3,7 @@ package com.tecomerce.productservice.application.usercase;
 import com.tecomerce.productservice.application.ports.input.SupplierCrudUseCase;
 import com.tecomerce.productservice.application.ports.output.SupplierPersistence;
 import com.tecomerce.productservice.domain.exception.EntityNotFoundException;
-import com.tecomerce.productservice.infrastructure.adapter.output.persistence.entity.Supplier;
+import com.tecomerce.productservice.domain.model.Supplier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,6 +49,8 @@ public class SupplierCrudUseCaseImpl implements SupplierCrudUseCase {
 
     @Override
     public void deleteById(String id) {
-        persistence.deleteById(id);
+        persistence.findById(id).ifPresentOrElse( s -> {
+            persistence.deleteById(id);
+        }, () -> {throw new EntityNotFoundException(); });
     }
 }
