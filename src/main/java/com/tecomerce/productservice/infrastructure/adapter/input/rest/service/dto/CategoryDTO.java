@@ -7,10 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Setter
 @Getter
@@ -36,7 +34,8 @@ public class CategoryDTO implements Serializable {
     @ArraySchema(schema = @Schema(implementation = String.class))
     private List<String> categoryUrlImages;
 
-    @Schema(example = "Active")
+    @Schema(example = "ENABLED")
+    @NotNull(message = "File category status cannot by empty or null.")
     private String categoryStatus;
 
     @ArraySchema(schema = @Schema(implementation = String.class))

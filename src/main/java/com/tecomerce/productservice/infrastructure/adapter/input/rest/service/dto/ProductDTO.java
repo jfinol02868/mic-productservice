@@ -2,7 +2,6 @@ package com.tecomerce.productservice.infrastructure.adapter.input.rest.service.d
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,25 +21,23 @@ public class ProductDTO implements Serializable  {
     @Schema(example = "bc36bacd-b110-4aa3-a083-fe9c5a3404b6")
     private String id;
 
-
     @Schema(example = "Lapiz")
     @NotNull(message = "Field product name cannot be empty or null.")
-    @NotBlank(message = "Field product name cannot be empty or null")
     private String productName;
 
     @Schema(example = "Lapiz de grafito para escribir en cuaderno tradicional")
     private String productDescription;
 
-    @NotNull(message = "Field product stock cannot be empty or null.")
     @Schema(example = "2000")
+    @NotNull(message = "Field product stock cannot be empty or null.")
     private Integer productStock;
 
-    @NotNull(message = "Field product weight cannot be empty or null.")
     @Schema(example = "0.10")
+    @NotNull(message = "Field product weight cannot be empty or null.")
     private Double productWeight;
 
-    @NotNull(message = "Field product availability cannot be empty or null.")
     @Schema(example = "2000")
+    @NotNull(message = "Field product availability cannot be empty or null.")
     private Integer productAvailability;
 
     @Schema(example = "2024-05-01T20:35:10")
