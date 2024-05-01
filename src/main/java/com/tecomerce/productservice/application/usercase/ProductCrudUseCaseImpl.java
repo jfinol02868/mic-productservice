@@ -43,7 +43,8 @@ public class ProductCrudUseCaseImpl implements ProductCrudUseCase {
 
     @Override
     public void deleteById(String id) {
-        productRepository.findById(id).ifPresentOrElse( p -> { productRepository.deleteById(p.getId());
-        },() -> { throw new EntityNotFoundException(); });
+        productRepository.findById(id).ifPresentOrElse( p -> {
+            productRepository.deleteById(p.getId());
+        }, () -> { throw new EntityNotFoundException(); });
     }
 }

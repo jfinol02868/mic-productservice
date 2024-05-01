@@ -2,6 +2,8 @@ package com.tecomerce.productservice.domain.model;
 
 import lombok.*;
 
+import java.time.ZonedDateTime;
+
 @Setter
 @Getter
 @Builder
@@ -15,4 +17,5 @@ public class Address {
     private String city;
     private String country;
     private String postalCode;
+    private ZonedDateTime addressCreationDate;
 }

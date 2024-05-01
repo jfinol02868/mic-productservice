@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-01T13:14:23+0200",
+    date = "2024-05-01T15:52:42+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.10 (Private Build)"
 )
 @Component
@@ -27,8 +27,8 @@ public class CategoryEntityMapperImpl implements CategoryEntityMapper {
         categoryEntity.categoryName( category.getCategoryName() );
         categoryEntity.categoryDescription( category.getCategoryDescription() );
         categoryEntity.categoryParent( category.getCategoryParent() );
-        categoryEntity.categoryCreation( category.getCategoryCreation() );
-        categoryEntity.categoryUpdate( category.getCategoryUpdate() );
+        categoryEntity.categoryCreationDate( category.getCategoryCreationDate() );
+        categoryEntity.categoryUpdateDate( category.getCategoryUpdateDate() );
         List<String> list = category.getCategoryUrlImages();
         if ( list != null ) {
             categoryEntity.categoryUrlImages( new ArrayList<String>( list ) );
@@ -54,8 +54,8 @@ public class CategoryEntityMapperImpl implements CategoryEntityMapper {
         category.categoryName( categoryEntity.getCategoryName() );
         category.categoryDescription( categoryEntity.getCategoryDescription() );
         category.categoryParent( categoryEntity.getCategoryParent() );
-        category.categoryCreation( categoryEntity.getCategoryCreation() );
-        category.categoryUpdate( categoryEntity.getCategoryUpdate() );
+        category.categoryCreationDate( categoryEntity.getCategoryCreationDate() );
+        category.categoryUpdateDate( categoryEntity.getCategoryUpdateDate() );
         List<String> list = categoryEntity.getCategoryUrlImages();
         if ( list != null ) {
             category.categoryUrlImages( new ArrayList<String>( list ) );
