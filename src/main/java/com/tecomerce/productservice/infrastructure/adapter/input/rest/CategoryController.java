@@ -42,7 +42,7 @@ public class CategoryController implements CategoryApi {
 
     @Override
     public ResponseEntity<CategoryDTO> update(CategoryDTO categoryDTO, String id) {
-        return new ResponseEntity<>(mapper.toDTO(useCase.update(id, mapper.toModel(categoryDTO))), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDTO(useCase.update(id, mapper.toModel(categoryDTO))), HttpStatus.CREATED);
     }
 
     @Override
