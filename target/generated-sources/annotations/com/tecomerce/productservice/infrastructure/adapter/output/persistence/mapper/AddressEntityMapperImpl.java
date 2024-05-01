@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-01T13:14:23+0200",
+    date = "2024-05-01T21:32:58+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.10 (Private Build)"
 )
 @Component
@@ -29,6 +29,7 @@ public class AddressEntityMapperImpl implements AddressEntityMapper {
         addressEntity.city( address.getCity() );
         addressEntity.country( address.getCountry() );
         addressEntity.postalCode( address.getPostalCode() );
+        addressEntity.addressCreationDate( address.getAddressCreationDate() );
 
         return addressEntity.build();
     }
@@ -47,6 +48,7 @@ public class AddressEntityMapperImpl implements AddressEntityMapper {
         address.city( addressEntity.getCity() );
         address.country( addressEntity.getCountry() );
         address.postalCode( addressEntity.getPostalCode() );
+        address.addressCreationDate( addressEntity.getAddressCreationDate() );
 
         return address.build();
     }

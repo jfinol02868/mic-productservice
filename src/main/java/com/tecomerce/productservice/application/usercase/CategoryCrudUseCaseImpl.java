@@ -4,7 +4,6 @@ import com.tecomerce.productservice.application.ports.input.CategoryCrudUseCase;
 import com.tecomerce.productservice.application.ports.output.CategoryPersistence;
 import com.tecomerce.productservice.domain.exception.EntityNotFoundException;
 import com.tecomerce.productservice.domain.model.Category;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,9 +35,18 @@ public class CategoryCrudUseCaseImpl implements CategoryCrudUseCase {
 
     @Override
     public Category update(String id, Category category) {
-        Category categoryResponse = persistence.findById(id).orElseThrow(EntityNotFoundException::new);
-        BeanUtils.copyProperties(category, categoryResponse);
-        return persistence.save(categoryResponse);
+        return persistence.findById(id)
+                .map(categoryResponse -> {
+                    categoryResponse.setId(categoryResponse.getId());
+                    categoryResponse.setCategoryName(category.getCategoryName());
+                    categoryResponse.setCategoryDescription(category.getCategoryDescription());
+                    categoryResponse.setCategoryParent(category.getCategoryParent());
+                    categoryResponse.setCategoryLabels(category.getCategoryLabels());
+                    categoryResponse.setCategoryStatus(category.getCategoryStatus());
+                    categoryResponse.setCategoryUpdateDate(category.getCategoryUpdateDate());
+                    categoryResponse.setCategoryUrlImages(category.getCategoryUrlImages());
+                    return persistence.save(categoryResponse);
+                }).orElseThrow(EntityNotFoundException::new);
     }
 
     @Override

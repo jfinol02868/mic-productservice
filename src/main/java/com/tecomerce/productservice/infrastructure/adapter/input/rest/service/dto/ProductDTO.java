@@ -22,31 +22,32 @@ public class ProductDTO implements Serializable  {
     @Schema(example = "bc36bacd-b110-4aa3-a083-fe9c5a3404b6")
     private String id;
 
-    @NotNull
+
     @Schema(example = "Lapiz")
-    @NotBlank(message =  "Field product name cannot be empty or null.")
+    @NotNull(message = "Field product name cannot be empty or null.")
+    @NotBlank(message = "Field product name cannot be empty or null")
     private String productName;
 
     @Schema(example = "Lapiz de grafito para escribir en cuaderno tradicional")
     private String productDescription;
 
+    @NotNull(message = "Field product stock cannot be empty or null.")
     @Schema(example = "2000")
-    @NotBlank(message = "Field product stock cannot be null.")
     private Integer productStock;
 
+    @NotNull(message = "Field product weight cannot be empty or null.")
     @Schema(example = "0.10")
-    @NotBlank(message =  "Field product weight cannot be null.")
     private Double productWeight;
 
+    @NotNull(message = "Field product availability cannot be empty or null.")
     @Schema(example = "2000")
-    @NotBlank(message =  "Field product availability cannot be null.")
     private Integer productAvailability;
 
     @Schema(example = "2024-05-01T20:35:10")
-    @NotBlank(message =  "Field product creation date cannot be null.")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private ZonedDateTime productCreationDate;
 
     @Schema(example = "2024-05-01T20:35:10")
-    @NotBlank(message =  "Field product creation update cannot be null.")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private ZonedDateTime productUpdateDate;
 }

@@ -6,6 +6,8 @@ import com.tecomerce.productservice.infrastructure.adapter.output.persistence.ma
 import com.tecomerce.productservice.infrastructure.adapter.output.persistence.repository.AddressRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -33,7 +35,6 @@ public class AddressPersistenceAdapter implements AddressPersistence {
 
     @Override
     public Address save(Address address) {
-        address.setId(UUID.randomUUID().toString());
         return mapper.toModel(repository.save(mapper.toEntity(address)));
     }
 
