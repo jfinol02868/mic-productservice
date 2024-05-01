@@ -1,5 +1,8 @@
 package com.tecomerce.productservice.utils;
 
+import lombok.Getter;
+
+@Getter
 public enum ErrorCatalog {
 
     NOT_FOUND("E404","Record not found."),
@@ -14,11 +17,4 @@ public enum ErrorCatalog {
         this.message = message;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 }

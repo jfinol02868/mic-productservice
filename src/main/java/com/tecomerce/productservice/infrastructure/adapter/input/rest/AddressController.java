@@ -7,6 +7,7 @@ import com.tecomerce.productservice.infrastructure.adapter.input.rest.service.dt
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 @Tag(name = "Address")
 @RequestMapping("/v1/address")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class AddressController implements AddressApi {
 
     private final AddressDTOMapper mapper;

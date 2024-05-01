@@ -5,10 +5,8 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
-@CrossOrigin(origins = "http://localhost:3000")
 @OpenAPIDefinition(servers = {@Server(url = "https://mic-productservice-production.up.railway.app", description = "Base url for the project.")})
 public class MicProductServiceApplication implements CommandLineRunner {
 
