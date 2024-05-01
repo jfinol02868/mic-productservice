@@ -1,10 +1,10 @@
-package com.tecomerce.productservice.infrastructure.adapter.output.persistence.entity;
+package com.tecomerce.productservice.domain.model;
 
 import lombok.*;
 
-@Setter
-@Getter
 @Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Supplier {
