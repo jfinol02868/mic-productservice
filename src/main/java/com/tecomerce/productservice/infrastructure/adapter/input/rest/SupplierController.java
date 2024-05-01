@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @Tag(name = "Suppliers")
 @RequestMapping("/v1/suppliers")
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = {"http://localhost:3000", "https://mic-productservice-production.up.railway.app"})
 public class SupplierController implements SupplierApi {
 
     private final SupplierCrudUseCase useCase;

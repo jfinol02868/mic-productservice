@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @Tag(name = "Products")
 @RequestMapping("/v1/products")
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = {"http://localhost:3000", "https://mic-productservice-production.up.railway.app"})
 public class ProductController implements ProductApi {
 
     private final ProductDTOMapper mapper;

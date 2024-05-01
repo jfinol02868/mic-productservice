@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @Tag(name = "Address")
 @RequestMapping("/v1/address")
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = {"http://localhost:3000", "https://mic-productservice-production.up.railway.app"})
 public class AddressController implements AddressApi {
 
     private final AddressDTOMapper mapper;
