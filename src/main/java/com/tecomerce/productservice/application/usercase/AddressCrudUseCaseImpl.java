@@ -4,7 +4,6 @@ import com.tecomerce.productservice.application.ports.input.AddressCrudUseCase;
 import com.tecomerce.productservice.application.ports.output.AddressPersistence;
 import com.tecomerce.productservice.domain.exception.EntityNotFoundException;
 import com.tecomerce.productservice.domain.model.Address;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
