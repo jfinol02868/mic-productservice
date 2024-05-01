@@ -35,9 +35,14 @@ public class ProductCrudUseCaseImpl implements ProductCrudUseCase {
 
     @Override
     public Product update(String id, Product product) {
-        return productRepository.findById(id).map(productResponse -> {
-            BeanUtils.copyProperties(product, productResponse);
-            return productRepository.save(productResponse);
+        return productRepository.findById(id).map(p -> {
+            p.setId(id);
+            p.setProductName(product.getProductName());
+            p.setProductDescription(product.getProductDescription());
+            p.setProductStock(product.getProductStock());
+            p.setProductAvailability(product.getProductAvailability());
+            p.setProductWeight(product.getProductWeight());
+            return productRepository.save(p);
         }).orElseThrow(EntityNotFoundException::new);
     }
 
