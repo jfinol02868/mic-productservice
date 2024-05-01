@@ -49,6 +49,6 @@ public class AddressCrudUseCaseImpl implements AddressCrudUseCase {
     public void deleteById(String id) {
         persistence.findById(id).ifPresentOrElse( a -> {
             persistence.deleteById(a.getId());
-        }, () -> {throw new EntityNotFoundException();});
+        }, () -> { throw new EntityNotFoundException(); });
     }
 }

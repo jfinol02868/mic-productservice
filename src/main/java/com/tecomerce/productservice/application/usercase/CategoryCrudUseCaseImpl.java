@@ -36,16 +36,16 @@ public class CategoryCrudUseCaseImpl implements CategoryCrudUseCase {
     @Override
     public Category update(String id, Category category) {
         return persistence.findById(id)
-                .map(categoryResponse -> {
-                    categoryResponse.setId(categoryResponse.getId());
-                    categoryResponse.setCategoryName(category.getCategoryName());
-                    categoryResponse.setCategoryDescription(category.getCategoryDescription());
-                    categoryResponse.setCategoryParent(category.getCategoryParent());
-                    categoryResponse.setCategoryLabels(category.getCategoryLabels());
-                    categoryResponse.setCategoryStatus(category.getCategoryStatus());
-                    categoryResponse.setCategoryUpdateDate(category.getCategoryUpdateDate());
-                    categoryResponse.setCategoryUrlImages(category.getCategoryUrlImages());
-                    return persistence.save(categoryResponse);
+                .map(c -> {
+                    c.setId(c.getId());
+                    c.setCategoryName(category.getCategoryName());
+                    c.setCategoryDescription(category.getCategoryDescription());
+                    c.setCategoryParent(category.getCategoryParent());
+                    c.setCategoryLabels(category.getCategoryLabels());
+                    c.setCategoryStatus(category.getCategoryStatus());
+                    c.setCategoryUpdateDate(category.getCategoryUpdateDate());
+                    c.setCategoryUrlImages(category.getCategoryUrlImages());
+                    return persistence.save(c);
                 }).orElseThrow(EntityNotFoundException::new);
     }
 
@@ -53,6 +53,6 @@ public class CategoryCrudUseCaseImpl implements CategoryCrudUseCase {
     public void deleteById(String id) {
         persistence.findById(id).ifPresentOrElse( c -> {
              persistence.deleteById(c.getId());
-        }, () -> { throw new EntityNotFoundException();});
+        }, () -> { throw new EntityNotFoundException(); });
     }
 }

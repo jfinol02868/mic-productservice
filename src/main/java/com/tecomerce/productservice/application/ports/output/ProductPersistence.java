@@ -8,7 +8,10 @@ import java.util.Optional;
 public interface ProductPersistence {
 
     Optional<Product> findById(String id);
+
     List<Product> findAll();
+
     Product save(Product product);
+
     void deleteById(String id);
 }
