@@ -2,8 +2,6 @@ package com.tecomerce.productservice.domain.model;
 
 import lombok.*;
 
-import java.util.UUID;
-
 @Setter
 @Getter
 @Builder

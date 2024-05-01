@@ -1,9 +1,7 @@
 package com.tecomerce.productservice.infrastructure.adapter.output.persistence.mapper;
 
 import com.tecomerce.productservice.domain.model.Address;
-import com.tecomerce.productservice.domain.model.Category;
 import com.tecomerce.productservice.infrastructure.adapter.output.persistence.entity.AddressEntity;
-import com.tecomerce.productservice.infrastructure.adapter.output.persistence.entity.CategoryEntity;
 import org.mapstruct.Mapper;
 
 import java.util.List;

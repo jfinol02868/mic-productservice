@@ -3,6 +3,7 @@ package com.tecomerce.productservice.infrastructure.adapter.input.rest.service.d
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class ProductDTO implements Serializable  {
     @Schema(example = "bc36bacd-b110-4aa3-a083-fe9c5a3404b6")
     private String id;
 
+    @NotNull
     @Schema(example = "Lapiz")
     @NotBlank(message =  "Field product name cannot be empty or null.")
     private String productName;

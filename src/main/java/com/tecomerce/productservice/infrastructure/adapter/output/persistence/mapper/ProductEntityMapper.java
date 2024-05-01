@@ -4,7 +4,6 @@ package com.tecomerce.productservice.infrastructure.adapter.output.persistence.m
 import com.tecomerce.productservice.domain.model.Product;
 import com.tecomerce.productservice.infrastructure.adapter.output.persistence.entity.ProductEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 

@@ -21,56 +21,56 @@ public interface AddressApi {
 
     @PostMapping
     @Operation( operationId = "creation-address", description = "Creation of address.")
-    @ApiResponse(responseCode = "201", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = AddressDTO.class))))
-    @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
+    @ApiResponse(responseCode = "201", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = AddressDTO.class)))
+    @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
     default ResponseEntity<AddressDTO> create(@Valid @RequestBody AddressDTO addressDTO) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @GetMapping("/{id}")
     @Operation( operationId = "get-address-by-id", description = "Get address by id.")
-    @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = AddressDTO.class))))
-    @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
+    @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = AddressDTO.class)))
+    @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
     default ResponseEntity<AddressDTO> findById(@PathVariable String id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
     @GetMapping
     @Operation( operationId = "get-all-address", description = "Get all address.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = AddressDTO.class))))
-    @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
+    @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
     default ResponseEntity<List<AddressDTO>> findAll() {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @PutMapping("/{id}")
     @Operation( operationId = "update-address", description = "Update address.")
-    @ApiResponse(responseCode = "201", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = AddressDTO.class))))
-    @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
+    @ApiResponse(responseCode = "201", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = AddressDTO.class)))
+    @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
     default ResponseEntity<AddressDTO> update(@Valid @RequestBody AddressDTO addressDTO, @PathVariable String id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @DeleteMapping("/{id}")
     @Operation( operationId = "delete-address", description = "Delete address by id.")
-    @ApiResponse(responseCode = "204", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = Void.class))))
-    @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
-    @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, array = @ArraySchema( schema = @Schema(implementation = MessageResponse.class))))
+    @ApiResponse(responseCode = "204", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = Void.class)))
+    @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
+    @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponse.class)))
     default ResponseEntity<Void> delete(@PathVariable String id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
