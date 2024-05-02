@@ -5,8 +5,13 @@ spring:
   application:
     name: productservice
 
-  main:
-    allow-circular-references: true
+#web:
+#  cors:
+#    allowed-origins: "*"
+#    allowed-methods: GET, POST, PATCH, PUT, DELETE, OPTIONS, HEAD
+#    max-age: 3600
+#    allowed-headers: "Requestor-Type"
+#    exposed-headers: "X-Get-Header"
 
   datasource:
     url: jdbc:postgresql://monorail.proxy.rlwy.net:45438/railway
