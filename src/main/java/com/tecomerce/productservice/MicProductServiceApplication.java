@@ -7,7 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@OpenAPIDefinition(servers = {@Server(url = "https://mic-productservice-production.up.railway.app", description = "Base url for the project.")})
+@OpenAPIDefinition(servers = {
+		@Server(url = "https://mic-productservice-production.up.railway.app", description = "Base url for the project."),
+		@Server(url = "http://localhost:3000", description = "Local url base")
+})
 public class MicProductServiceApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
