@@ -125,17 +125,17 @@ public interface BrandApi {
 
 
     @GetMapping("/colorsFilter")
-    @Operation( operationId = "get-colors-filter", description = "Get colors by filter.")
+    @Operation( operationId = "get-brand-filter", description = "Get brand by filter.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     default ResponseEntity<List<BrandDto>> filters(
-            @RequestParam(required = false, defaultValue = "{\"name\":\"Negro\", \"code\":\"000001\", \"hex\":\"#000000\"}") String filterProperties,
+            @RequestParam(required = false, defaultValue = "{\"name\":\"WOULD\", \"description\":\"WOULD SPORTSWEAR\", \"isActive\":true}") String filterProperties,
             @RequestParam(required = false, defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "10") int size,
             @RequestParam(required = false) SortEnumDTO direction,
-            @RequestParam(required = false, defaultValue = "createAt") String... sortProperties) {
+            @RequestParam(required = false, defaultValue = "isActive") String... sortProperties) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 

@@ -14,18 +14,6 @@ services:
     networks:
       - postgres_network
 
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: pgadmin
-    env_file:
-      - .env
-    ports:
-      - "8080:80"  # Exponer el puerto 8080 en el host para acceder a pgAdmin -> http://localhost:8080/login?next=/
-    networks:
-      - postgres_network
-    depends_on:
-      - postgres  # Asegura que pgAdmin se levante después de Postgres
-
 networks:
   postgres_network:
     driver: bridge

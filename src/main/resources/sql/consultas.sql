@@ -4,6 +4,7 @@ CREATE TABLE public.brands (
 	description varchar(255) NULL,
 	is_active bool NOT NULL,
 	logo_url varchar(255) NULL,
+	website_url varchar(255) NULL,
 	"name" varchar(255) NOT NULL,
 	updated_date timestamp(6) NULL,
 	CONSTRAINT brands_pkey PRIMARY KEY (id)

@@ -13,7 +13,7 @@ public interface BrandDtoMapper {
 
     Brand toDto(BrandDto brandDto);
 
-    List<BrandDto> toModels(List<Brand> brands);
+    List<BrandDto> toDtoList(List<Brand> brands);
 
-    List<Brand> toDtos(List<BrandDto> brandDtos);
+    List<Brand> toModelList(List<BrandDto> dtos);
 }

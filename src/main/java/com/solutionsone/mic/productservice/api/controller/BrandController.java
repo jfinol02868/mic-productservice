@@ -66,11 +66,14 @@ public class BrandController implements BrandApi {
 
     @Override
     public ResponseEntity<List<BrandDto>> findAllPaginated(int page, int size, String sort, SortEnumDTO direction) {
-        return new ResponseEntity<>(mapper.toModels(useCase.findAll()), HttpStatus.OK);
+        return BrandApi.super.findAllPaginated(page, size, sort, direction);
     }
 
     @Override
-    public ResponseEntity<List<BrandDto>> filters(String filterProperties, int page, int size, SortEnumDTO direction, String... sortProperties) {
-        return BrandApi.super.filters(filterProperties, page, size, direction, sortProperties);
+    public ResponseEntity<List<BrandDto>> filters(String filterProperties, int page, int size, SortEnumDTO direction,
+                                                  String... sortProperties) {
+        return new ResponseEntity<>(
+                mapper.toDtoList(useCase.filters(filterProperties, page, size, direction.getValue(), sortProperties))
+                , HttpStatus.OK);
     }
 }
