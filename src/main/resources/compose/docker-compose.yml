@@ -9,8 +9,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      #- ./data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data:/var/lib/postgresql/data
     networks:
       - postgres_network
 
@@ -20,7 +19,7 @@ services:
     env_file:
       - .env
     ports:
-      - "8080:80"  # Exponer el puerto 8080 en el host para acceder a pgAdmin -> http://localhost:8080/login?next=/
+      - "8080:80"  # Exponer el puerto 8080 en el host para acceder a pgAdmin
     networks:
       - postgres_network
     depends_on:
