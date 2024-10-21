@@ -1,10 +1,8 @@
 package com.solutionsone.mic.productservice.domain.repository;
 
 import com.solutionsone.mic.productservice.domain.entity.Brand;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-import java.util.List;
+public interface BrandRepository extends BaseRepository<Brand, String> {
 
-public interface BrandRepository {
-
-    default List<Brand> findAll() { return List.of(); }
 }

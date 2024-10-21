@@ -23,3 +23,7 @@ springdoc:
 server:
   port: 8082
 
+app:
+  micro: PRODUCTSERVICE
+  environment: DES
+
