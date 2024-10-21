@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.solutionsone.mic.productservice.domain.exception.ErrorMappingException;
 import org.springframework.stereotype.Component;
 
+import static com.solutionsone.mic.productservice.domain.util.Message.ERROR_MAPPING;
+
 @Component
 public class MapperUtil {
 
@@ -13,7 +15,7 @@ public class MapperUtil {
         try {
             return mapping.readValue(filterProperties, clazz);
         } catch (JsonProcessingException e) {
-            throw new ErrorMappingException();
+            throw new ErrorMappingException(ERROR_MAPPING.getCode(), ERROR_MAPPING.getMessage());
         }
     }
 }

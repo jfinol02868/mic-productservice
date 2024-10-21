@@ -124,7 +124,7 @@ public interface BrandApi {
     }
 
 
-    @GetMapping("/colorsFilter")
+    @GetMapping("/brandFilter")
     @Operation( operationId = "get-brand-filter", description = "Get brand by filter.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))

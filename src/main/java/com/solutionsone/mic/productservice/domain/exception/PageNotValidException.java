@@ -5,13 +5,13 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ErrorMappingException extends RuntimeException {
+public class PageNotValidException extends RuntimeException {
 
     private String code;
 
-    public ErrorMappingException() {}
+    public PageNotValidException() {}
 
-    public ErrorMappingException(String code, String message) {
+    public PageNotValidException(String code, String message) {
         super(message);
         this.code = code;
     }
