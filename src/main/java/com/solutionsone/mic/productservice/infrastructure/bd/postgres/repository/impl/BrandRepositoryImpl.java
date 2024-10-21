@@ -29,6 +29,11 @@ public class BrandRepositoryImpl implements BrandRepository {
 
 
     @Override
+    public Brand create(Brand entity) {
+        return BrandRepository.super.create(entity);
+    }
+
+    @Override
     public List<Brand> filters(Brand object, int page, int size, String direction, String... sortProperties) {
         Pageable pageable = null;
         Specification<BrandEntity> spec = DynamicSpecification.byFields(object);

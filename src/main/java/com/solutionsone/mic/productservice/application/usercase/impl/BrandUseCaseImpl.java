@@ -16,6 +16,10 @@ public class BrandUseCaseImpl implements BrandUserCase {
     private final MapperUtil mapperUtil;
     private final BrandRepository repository;
 
+    @Override
+    public Brand create(Brand entity) {
+        return repository.create(entity);
+    }
 
     @Override
     public List<Brand> filters(String filterProperties, int page, int size, java.lang.String direction, String... sortProperties) {

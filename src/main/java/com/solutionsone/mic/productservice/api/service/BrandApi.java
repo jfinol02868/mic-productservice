@@ -20,7 +20,7 @@ public interface BrandApi {
     static final String MEDIA_TYPE = "application/json";
 
     @PostMapping
-    @Operation( operationId = "creation-color", description = "Creation of color.")
+    @Operation( operationId = "creation-brand", description = "Creation of brand.")
     @ApiResponse(responseCode = "201", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = BrandDto.class)))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))

@@ -1,5 +1,6 @@
 package com.solutionsone.mic.productservice.api.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +16,7 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 public class BrandDto {
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Schema(description = "The brand id", example = "GLOBAL::PRODUCTSERVICE::BRAND::B615044B-26C2-44C1-9B88-E27252E7685A::DES")
     private String id;
     @Schema(description = "The brand name", example = "WOULD")

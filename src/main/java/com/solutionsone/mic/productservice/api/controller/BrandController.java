@@ -26,7 +26,7 @@ public class BrandController implements BrandApi {
 
     @Override
     public ResponseEntity<BrandDto> create(BrandDto entity) {
-        return BrandApi.super.create(entity);
+        return new ResponseEntity<>(mapper.toDto(useCase.create(mapper.toModel(entity))), HttpStatus.CREATED);
     }
 
     @Override

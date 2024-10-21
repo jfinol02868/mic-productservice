@@ -9,9 +9,9 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface BrandDtoMapper {
 
-    BrandDto toModel(Brand brand);
+    BrandDto toDto(Brand brand);
 
-    Brand toDto(BrandDto brandDto);
+    Brand toModel(BrandDto brandDto);
 
     List<BrandDto> toDtoList(List<Brand> brands);
 
