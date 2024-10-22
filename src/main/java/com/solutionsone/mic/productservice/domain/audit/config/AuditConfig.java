@@ -1,6 +1,6 @@
-package com.solutionsone.mic.productservice.infrastructure.bd.config;
+package com.solutionsone.mic.productservice.domain.audit.config;
 
-import com.solutionsone.mic.productservice.infrastructure.bd.postgres.repository.impl.AuditorAwareImpl;
+import com.solutionsone.mic.productservice.domain.audit.impl.AuditorAwareImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.auditing.DateTimeProvider;

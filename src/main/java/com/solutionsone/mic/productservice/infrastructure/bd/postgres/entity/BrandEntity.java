@@ -7,8 +7,6 @@ import jakarta.persistence.Table;
 import lombok.*;
 import org.springframework.data.annotation.TypeAlias;
 
-import java.time.ZonedDateTime;
-
 
 
 @Data
@@ -36,12 +34,6 @@ public class BrandEntity extends Auditable {
 
     @Column(name = "website_url")
     private String websiteUrl;
-
-//    @Column(name = "created_date", nullable = false)
-//    private ZonedDateTime createdDate;
-//
-//    @Column(name = "updated_date")
-//    private ZonedDateTime updatedDate;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;

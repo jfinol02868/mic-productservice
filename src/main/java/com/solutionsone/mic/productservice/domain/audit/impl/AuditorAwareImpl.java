@@ -1,4 +1,4 @@
-package com.solutionsone.mic.productservice.infrastructure.bd.postgres.repository.impl;
+package com.solutionsone.mic.productservice.domain.audit.impl;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;

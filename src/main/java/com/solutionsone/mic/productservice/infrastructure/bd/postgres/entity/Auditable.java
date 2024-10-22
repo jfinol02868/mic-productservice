@@ -11,7 +11,6 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 @Getter
@@ -35,11 +34,4 @@ public class Auditable {
     @LastModifiedDate
     @Column(name = "updated_date")
     private ZonedDateTime updatedDate;
-
-   /* public Auditable() {
-        this.createdBy = "admin";
-        this.createdDate = ZonedDateTime.now(ZoneId.of("UTC"));
-        this.updatedBy = "user";
-        this.updatedDate = ZonedDateTime.now(ZoneId.of("UTC")).minusHours(3);
-    }*/
 }
