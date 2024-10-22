@@ -61,7 +61,7 @@ public interface BrandApi {
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
-    default ResponseEntity<List<BrandDto>> updateAll(@Valid @RequestBody List<BrandDto> entities){
+    default ResponseEntity<List<BrandDto>> updateAll(@RequestBody List<BrandDto> entities){
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
