@@ -15,6 +15,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import static com.solutionsone.mic.productservice.domain.util.Message.ERROR_PAGINATED;
@@ -30,7 +32,9 @@ public class BrandRepositoryImpl implements BrandRepository {
 
     @Override
     public Brand create(Brand entity) {
-        return BrandRepository.super.create(entity);
+        entity.setId(idGenerator.generateId(BrandEntity.class));
+        //.setCreatedDate(ZonedDateTime.now(ZoneId.of("UTC")));
+        return mapper.toModel(repository.save(mapper.toEntity(entity)));
     }
 
     @Override

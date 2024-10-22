@@ -18,7 +18,5 @@ public class Brand {
     private String description;
     private String logoUrl;
     private String websiteUrl;
-    private ZonedDateTime createdDate;
-    private ZonedDateTime updatedDate;
     private Boolean isActive;
 }

@@ -10,8 +10,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,8 +39,6 @@ public class BrandRepositoryImplTest {
                         .description("Calvin Klein Fashion")
                         .websiteUrl("http://www.calvinklein.com")
                         .logoUrl("http://www.calvinklein.com/logo.png")
-                        .createdDate(ZonedDateTime.now(ZoneId.of("UTC")))
-                        .updatedDate(ZonedDateTime.now(ZoneId.of("UTC")))
                         .isActive(true)
                         .build(),
                 Brand.builder()
@@ -51,8 +47,6 @@ public class BrandRepositoryImplTest {
                         .description("Guess Fashion Apparel")
                         .websiteUrl("http://www.guess.com")
                         .logoUrl("http://www.guess.com/logo.png")
-                        .createdDate(ZonedDateTime.now(ZoneId.of("UTC")))
-                        .updatedDate(ZonedDateTime.now(ZoneId.of("UTC")))
                         .isActive(true)
                         .build()
         );
