@@ -50,27 +50,29 @@ public class BrandController implements BrandApi {
 
     @Override
     public ResponseEntity<BrandDto> findById(String id) {
-        return BrandApi.super.findById(id);
+        return new ResponseEntity<>(mapper.toDto(useCase.findById(id)), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<List<BrandDto>> findByIds(List<String> id) {
-        return BrandApi.super.findByIds(id);
+    public ResponseEntity<List<BrandDto>> findByIds(List<String> ids) {
+        return  new ResponseEntity<>(mapper.toDtoList(useCase.findByIds(ids)), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Void> delete(String id) {
-        return BrandApi.super.delete(id);
+        useCase.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
     public ResponseEntity<Void> deleteAll(List<String> ids) {
-        return BrandApi.super.deleteAll(ids);
+        useCase.deleteAll(ids);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
     public ResponseEntity<List<BrandDto>> findAllPaginated(int page, int size, String sort, SortEnumDTO direction) {
-        return BrandApi.super.findAllPaginated(page, size, sort, direction);
+        return new ResponseEntity<>(mapper.toDtoList(useCase.findAllPaginated(page, size, sort, direction.getValue())), HttpStatus.OK);
     }
 
     @Override
@@ -82,9 +84,12 @@ public class BrandController implements BrandApi {
     }
 
     private void validateFields(List<BrandDto> entities){
-        boolean ifNull = entities.stream().allMatch(e -> Objects.nonNull(e.getName()) || Objects.nonNull(e.getIsActive()));
+        boolean ifNull = entities.stream().anyMatch(e -> Objects.isNull(e.getName()) || Objects.isNull(e.getIsActive()));
         if (ifNull) {
-            throw new FiledRequireException("BF001", "Los campos name y isActive son obligatorios, verificar la peticion.");
+            throw new FiledRequireException(
+                    "BF001",
+                    "Revisar los campos obligatorios.",
+                    List.of("name", "isActive"));
         }
     }
 }

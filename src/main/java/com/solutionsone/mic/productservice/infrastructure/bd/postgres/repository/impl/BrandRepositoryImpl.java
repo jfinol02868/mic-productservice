@@ -32,7 +32,6 @@ public class BrandRepositoryImpl implements BrandRepository {
     private final BrandEntityMapper mapper;
     private final BrandRepositoryAdapter repository;
 
-
     @Override
     public Brand create(Brand entity) {
         entity.setId(idGenerator.generateId(BrandEntity.class));
@@ -64,6 +63,43 @@ public class BrandRepositoryImpl implements BrandRepository {
     public List<Brand> updateAll(List<Brand> entities) {
         entities.forEach( entity -> { this.update(entity, entity.getId()); } );
         return mapper.toModels(repository.saveAll(mapper.toEntities(entities)));
+    }
+
+    @Override
+    public Brand findById(String id) {
+        return mapper.toModel(repository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("EN001", "La marca con id: ".concat(id).concat(" no existe."))));
+    }
+
+    @Override
+    public List<Brand> findByIds(List<String> ids) {
+        ids.forEach(this::findById);
+        return mapper.toModels(repository.findAllById(ids));
+    }
+
+    @Override
+    public void delete(String id) {
+        this.findById(id);
+        repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAll(List<String> ids) {
+        ids.forEach(this::findById);
+        repository.deleteAllById(ids);
+    }
+
+    @Override
+    public List<Brand> findAllPaginated(int page, int size, String sort, String direction) {
+        Pageable pageable = null;
+        Sort.Direction dir = Sort.Direction.fromString(direction);
+        try{
+            pageable = PageRequest.of(page, size, Sort.by(dir, sort));
+        }catch (IllegalArgumentException e){
+            throw new PageNotValidException(ERROR_PAGINATED.getCode(),ERROR_PAGINATED.getMessage());
+        }
+        return mapper.toModels(repository.findAll(pageable).getContent());
     }
 
     @Override

@@ -37,6 +37,31 @@ public class BrandUseCaseImpl implements BrandUserCase {
     }
 
     @Override
+    public Brand findById(String id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public List<Brand> findByIds(List<String> ids) {
+        return repository.findByIds(ids);
+    }
+
+    @Override
+    public void delete(String id) {
+        repository.delete(id);
+    }
+
+    @Override
+    public void deleteAll(List<String> ids) {
+        repository.deleteAll(ids);
+    }
+
+    @Override
+    public List<Brand> findAllPaginated(int page, int size, String sort, String direction) {
+        return repository.findAllPaginated(page, size, sort, direction);
+    }
+
+    @Override
     public List<Brand> filters(String filterProperties, int page, int size, java.lang.String direction,
                                String... sortProperties) {
         Brand brand = (Brand) mapperUtil.mappingEntity(filterProperties, Brand.class);

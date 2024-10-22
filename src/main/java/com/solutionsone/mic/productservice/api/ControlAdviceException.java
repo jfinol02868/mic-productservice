@@ -4,6 +4,7 @@ import com.solutionsone.mic.productservice.api.service.dto.MessageResponseDTO;
 import com.solutionsone.mic.productservice.domain.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -68,13 +69,22 @@ public class ControlAdviceException {
         return new ResponseEntity<>(
                 MessageResponseDTO.builder()
                         .code(ex.getCode())
-                        .details(List.of())
+                        .details(ex.getDetails())
                         .message(ex.getMessage())
+                        .timeStamp(ZonedDateTime.now(ZoneId.of("UTC")))
+                        .build(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Object> httpMessageNotReadableException(HttpMessageNotReadableException ex, WebRequest request) {
+        return new ResponseEntity<>(
+                MessageResponseDTO.builder()
+                        .code("JE001")
+                        .details(List.of())
+                        .message("Hay un error en la estructura del JSON, revisar el body que se esta enviando.")
                         .timeStamp(ZonedDateTime.now(ZoneId.of("UTC")))
                         .build(), HttpStatus.NOT_FOUND);
     }
-
-    //FiledRequireException
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
