@@ -22,7 +22,23 @@ public class BrandUseCaseImpl implements BrandUserCase {
     }
 
     @Override
-    public List<Brand> filters(String filterProperties, int page, int size, java.lang.String direction, String... sortProperties) {
+    public List<Brand> createAll(List<Brand> entities) {
+        return repository.createAll(entities);
+    }
+
+    @Override
+    public Brand update(Brand entity, String id) {
+        return repository.update(entity, id);
+    }
+
+    @Override
+    public List<Brand> updateAll(List<Brand> entities) {
+        return repository.updateAll(entities);
+    }
+
+    @Override
+    public List<Brand> filters(String filterProperties, int page, int size, java.lang.String direction,
+                               String... sortProperties) {
         Brand brand = (Brand) mapperUtil.mappingEntity(filterProperties, Brand.class);
         return repository.filters(brand, page, size, direction, sortProperties);
     }

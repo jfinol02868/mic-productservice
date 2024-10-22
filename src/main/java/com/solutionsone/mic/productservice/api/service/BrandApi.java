@@ -30,8 +30,8 @@ public interface BrandApi {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @PostMapping("/massCreation")
-    @Operation( operationId = "create-all-color", description = "Create all colors.")
+    @PostMapping("/bulkCreate")
+    @Operation( operationId = "create-brands", description = "Create brands.")
     @ApiResponse(responseCode = "201", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
@@ -42,7 +42,7 @@ public interface BrandApi {
     }
 
     @PutMapping("/{id}")
-    @Operation( operationId = "update-color", description = "Update color.")
+    @Operation( operationId = "update-brand", description = "Update brand.")
     @ApiResponse(responseCode = "201", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = BrandDto.class)))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
@@ -53,8 +53,8 @@ public interface BrandApi {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @PutMapping("/massUpdate")
-    @Operation( operationId = "update-all-colors", description = "Update all colors.")
+    @PutMapping("/bulkUpdate")
+    @Operation( operationId = "update-brands", description = "Update brands.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
@@ -66,7 +66,7 @@ public interface BrandApi {
     }
 
     @GetMapping("/{id}")
-    @Operation( operationId = "get-color-by-id", description = "Get color by id.")
+    @Operation( operationId = "get-brand-by-id", description = "Get brand by id.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = BrandDto.class)))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
@@ -78,7 +78,7 @@ public interface BrandApi {
     }
 
     @GetMapping("/getByIds")
-    @Operation( operationId = "get-colors-by-ids", description = "Get colors by ids.")
+    @Operation( operationId = "get-brands-by-ids", description = "Get brands by ids.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
@@ -90,7 +90,7 @@ public interface BrandApi {
     }
 
     @DeleteMapping("/{id}")
-    @Operation( operationId = "delete-color", description = "Delete color by id.")
+    @Operation( operationId = "delete-brand", description = "Delete brand by id.")
     @ApiResponse(responseCode = "204", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = Void.class)))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
@@ -102,7 +102,7 @@ public interface BrandApi {
     }
 
     @DeleteMapping("/deleteByIds")
-    @Operation( operationId = "delete-all-colors", description = "Delete colors by ids.")
+    @Operation( operationId = "delete-all-brands", description = "Delete brands by ids.")
     @ApiResponse(responseCode = "204", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = Void.class)))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
@@ -114,7 +114,7 @@ public interface BrandApi {
     }
 
     @GetMapping("/paginated")
-    @Operation( operationId = "get-colors-paginated", description = "Get colors paginated.")
+    @Operation( operationId = "get-brands-paginated", description = "Get brands paginated.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
@@ -123,9 +123,8 @@ public interface BrandApi {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-
     @GetMapping("/brandFilter")
-    @Operation( operationId = "get-brand-filter", description = "Get brand by filter.")
+    @Operation( operationId = "get-brand-by-filter", description = "Get brand by filter.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
@@ -138,5 +137,4 @@ public interface BrandApi {
             @RequestParam(required = false, defaultValue = "isActive") String... sortProperties) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
-
 }

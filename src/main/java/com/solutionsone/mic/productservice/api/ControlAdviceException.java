@@ -1,8 +1,7 @@
 package com.solutionsone.mic.productservice.api;
 
 import com.solutionsone.mic.productservice.api.service.dto.MessageResponseDTO;
-import com.solutionsone.mic.productservice.domain.exception.ErrorMappingException;
-import com.solutionsone.mic.productservice.domain.exception.PageNotValidException;
+import com.solutionsone.mic.productservice.domain.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -42,6 +41,41 @@ public class ControlAdviceException {
                         .build(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(PersistErrorException.class)
+    public ResponseEntity<Object> persistErrorException(PersistErrorException ex, WebRequest request) {
+        return new ResponseEntity<>(
+                MessageResponseDTO.builder()
+                        .code("PE001")
+                        .details(List.of())
+                        .message("Error al intentar persistir de forma masiva.")
+                        .timeStamp(ZonedDateTime.now(ZoneId.of("UTC")))
+                        .build(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<Object> entityNotFoundException(EntityNotFoundException ex, WebRequest request) {
+        return new ResponseEntity<>(
+                MessageResponseDTO.builder()
+                        .code(ex.getCode())
+                        .details(List.of())
+                        .message(ex.getMessage())
+                        .timeStamp(ZonedDateTime.now(ZoneId.of("UTC")))
+                        .build(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(FiledRequireException.class)
+    public ResponseEntity<Object> fieldRequireException(FiledRequireException ex, WebRequest request) {
+        return new ResponseEntity<>(
+                MessageResponseDTO.builder()
+                        .code(ex.getCode())
+                        .details(List.of())
+                        .message(ex.getMessage())
+                        .timeStamp(ZonedDateTime.now(ZoneId.of("UTC")))
+                        .build(), HttpStatus.NOT_FOUND);
+    }
+
+    //FiledRequireException
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public MessageResponseDTO handlerMethodArgumentNotValidException(MethodArgumentNotValidException e) {
@@ -51,9 +85,10 @@ public class ControlAdviceException {
                 .details(e.getBindingResult()
                         .getFieldErrors()
                         .stream()
-                        .map(fieldError -> fieldError.getField().concat(": ").concat(Objects.requireNonNull(fieldError.getDefaultMessage())))
+                        .map(fieldError -> fieldError.getField().concat(": ")
+                                .concat(Objects.requireNonNull(fieldError.getDefaultMessage())))
                         .toList())
-                .timeStamp(ZonedDateTime.now())
+                .timeStamp(ZonedDateTime.now(ZoneId.of("UTC")))
                 .build();
     }
 }

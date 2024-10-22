@@ -5,6 +5,8 @@ import com.solutionsone.mic.productservice.api.service.dto.BrandDto;
 import com.solutionsone.mic.productservice.api.service.dto.SortEnumDTO;
 import com.solutionsone.mic.productservice.api.service.mapper.BrandDtoMapper;
 import com.solutionsone.mic.productservice.application.usercase.BrandUserCase;
+import com.solutionsone.mic.productservice.domain.exception.EntityNotFoundException;
+import com.solutionsone.mic.productservice.domain.exception.FiledRequireException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import lombok.AllArgsConstructor;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @AllArgsConstructor
@@ -31,17 +34,19 @@ public class BrandController implements BrandApi {
 
     @Override
     public ResponseEntity<List<BrandDto>> createAll(List<BrandDto> entities) {
-        return BrandApi.super.createAll(entities);
+        this.validateFields(entities);
+        return new ResponseEntity<>(mapper.toDtoList(useCase.createAll(mapper.toModelList(entities))), HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<BrandDto> update(BrandDto entity, String id) {
-        return BrandApi.super.update(entity, id);
+        return new ResponseEntity<>(mapper.toDto(useCase.update(mapper.toModel(entity), id)), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<List<BrandDto>> updateAll(List<BrandDto> entities) {
-        return BrandApi.super.updateAll(entities);
+        this.validateFields(entities);
+        return new ResponseEntity<>(mapper.toDtoList(useCase.updateAll(mapper.toModelList(entities))), HttpStatus.OK);
     }
 
     @Override
@@ -75,5 +80,12 @@ public class BrandController implements BrandApi {
         return new ResponseEntity<>(
                 mapper.toDtoList(useCase.filters(filterProperties, page, size, direction.getValue(), sortProperties))
                 , HttpStatus.OK);
+    }
+
+    private void validateFields(List<BrandDto> entities){
+        boolean ifNull = entities.stream().allMatch(e -> Objects.nonNull(e.getName()) || Objects.nonNull(e.getIsActive()));
+        if (!ifNull) {
+            throw new FiledRequireException("BF001", "Los campos name y isActive son obligatorios, verificar la peticion.");
+        }
     }
 }

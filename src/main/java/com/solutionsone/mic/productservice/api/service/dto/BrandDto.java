@@ -17,7 +17,7 @@ import java.time.ZonedDateTime;
 public class BrandDto {
 
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Schema(description = "The brand id", example = "GLOBAL::PRODUCTSERVICE::BRAND::B615044B-26C2-44C1-9B88-E27252E7685A::DES")
     private String id;
 
