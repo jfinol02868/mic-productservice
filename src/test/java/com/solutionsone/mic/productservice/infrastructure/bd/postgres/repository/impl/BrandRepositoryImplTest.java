@@ -3,6 +3,7 @@ package com.solutionsone.mic.productservice.infrastructure.bd.postgres.repositor
 import com.solutionsone.mic.productservice.domain.entity.Brand;
 import com.solutionsone.mic.productservice.domain.repository.BrandRepository;
 import com.solutionsone.mic.productservice.infrastructure.bd.postgres.mapper.BrandEntityMapper;
+import com.solutionsone.mic.productservice.infrastructure.bd.postgres.repository.BrandRepositoryAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,13 +16,15 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class BrandRepositoryImplTest {
 
     @Mock
     private BrandRepository brandRepository;
+
+    private BrandRepositoryAdapter brandRepositoryAdapter;
 
     @Mock
     private BrandEntityMapper brandEntityMapper;
@@ -63,5 +66,6 @@ public class BrandRepositoryImplTest {
 
         //Assert
         List<Brand> result = brandRepository.filters(Brand.builder().build(), 0, 10, "ASC", "name");
+        verify(brandRepository, times(1)).filters(Brand.builder().build(), 0, 10, "ASC", "name");
     }
 }
