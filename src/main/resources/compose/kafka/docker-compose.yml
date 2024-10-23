@@ -6,29 +6,39 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     ports:
-      - "2181:2181"  # Exponer el puerto de Zookeeper
+      - "2181:2181"
 
   kafka:
     image: confluentinc/cp-kafka:latest
     depends_on:
-      - zookeeper  # Kafka depende de que Zookeeper esté levantado
+      - zookeeper
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_LISTENERS: INTERNAL://kafka:9093,EXTERNAL://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9093,EXTERNAL://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     ports:
-      - "9092:9092"  # Exponer el puerto de Kafka
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock  # Permitir la comunicación con Docker desde Kafka
+      - "9092:9092"
 
-  schema-registry:
-    image: confluentinc/cp-schema-registry:latest
+  akhq:
+    image: tchiotludo/akhq:latest
     depends_on:
       - kafka
     environment:
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka:9092
-      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8085
+      AKHQ_CONFIGURATION: |
+        akhq:
+          connections:
+            kafka-cluster:
+              properties:
+                bootstrap.servers: "kafka:9093"
+          security:
+            basic-auth:
+              - username: admin
+                password: admin
+                roles:
+                  - admin
     ports:
-      - "8085:8085"
-# Descargar KafkaIDE
+      - "8080:8080"

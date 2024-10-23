@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### Directory of postgres ###
-src/main/resources/compose/data/
+src/main/resources/compose/postgres/data/
