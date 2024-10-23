@@ -1,24 +1,27 @@
 package com.solutionsone.mic.productservice.infrastructure.kafka.producer;
 
+import com.solutionsone.mic.productservice.domain.entity.Brand;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
-public class KafkaProducer {
+public class KafkaProducer implements KafkaProducerMessage<String, String, Brand>{
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Brand> kafkaTemplate;
 
-    public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
+    public KafkaProducer(KafkaTemplate<String, Brand> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendMessage(String topic, String message) {
-        kafkaTemplate.send(topic, message);
+    public void sendMessage(String topic, Brand entity) {
+        kafkaTemplate.send(topic, UUID.randomUUID().toString() ,entity);
     }
 
-    public void sendMessageToMultipleTopics(String[] topics, String message) {
+    public void sendMessageToMultipleTopics(String[] topics, Brand entity) {
         for (String topic : topics) {
-            kafkaTemplate.send(topic, message);
+            kafkaTemplate.send(topic, entity);
         }
     }
 }
