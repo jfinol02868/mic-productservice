@@ -1,7 +1,7 @@
 package com.solutionsone.mic.productservice.api.controller;
 
 import com.solutionsone.mic.productservice.domain.entity.Brand;
-import com.solutionsone.mic.productservice.infrastructure.kafka.producer.KafkaProducer;
+import com.solutionsone.mic.productservice.infrastructure.kafka.producer.impl.KafkaProducerImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/kafka")
 public class KafkaController {
 
-    private final KafkaProducer kafkaProducer;
+    private final KafkaProducerImpl kafkaProducer;
 
     @Value("${spring.kafka.streams.topics}")
     private String[] topics;
 
-    public KafkaController(KafkaProducer kafkaProducer) {
+    public KafkaController(KafkaProducerImpl kafkaProducer) {
         this.kafkaProducer = kafkaProducer;
     }
 
