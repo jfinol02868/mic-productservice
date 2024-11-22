@@ -51,8 +51,6 @@ management:
       prometheus:
         enabled: true # Exposición de métricas en Prometheus.
 
-
-
 app:
   micro: PRODUCTSERVICE
   environment: DES
