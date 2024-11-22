@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Audit {
 
     private String id;
-    private String action;
+    private ActionType action;
     private String user;
     private String description;
     private String component;

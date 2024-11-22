@@ -16,18 +16,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
   kafka:
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring:
-          json:
-            add:
-              type:
-                headers: false
     bootstrap-servers: localhost:9092
-    streams:
-      topics: topic1, topic2, topic3
+    schema-registry-url: http://localhost:8081
 
 
 springdoc:
@@ -37,8 +27,32 @@ springdoc:
 
 server:
   port: 8082
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json,application/xml
+    min-response-size: 1024 # Habilita compresión para respuestas grandes.
+    max-http-header-size: 8192 # Ajusta para soportar headers más largos si es necesario.
+  tomcat:
+    max-threads: 200
+    min-spare-threads: 10
+    max-connections: 10000
+    connection-timeout: 5000 # Tiempo de espera en ms.
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true # Exposición de métricas en Prometheus.
+
+
 
 app:
   micro: PRODUCTSERVICE
   environment: DES
-

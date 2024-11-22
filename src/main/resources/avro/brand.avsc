@@ -1,27 +1,12 @@
 {
   "type": "record",
-  "name": "AuditEntity",
-  "namespace": "com.solutionsone.mic.productservice.kafka.avro",
+  "name": "Product",
+  "namespace": "com.example",
   "fields": [
-    {
-      "name": "id",
-      "type": "string"
-    },
-    {
-      "name": "action",
-      "type": "string"
-    },
-    {
-      "name": "user",
-      "type": "string"
-    },
-    {
-      "name": "description",
-      "type": "string"
-    },
-    {
-      "name": "component",
-      "type": "string"
-    }
+    { "name": "id", "type": "long" },
+    { "name": "name", "type": "string" },
+    { "name": "description", "type": "string" },
+    { "name": "cantidad", "type": "long" },
+    { "name": "creationDate", "type": "string" }
   ]
 }
