@@ -15,82 +15,82 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public interface BrandApi {
+public interface BrandApi<T> {
 
     static final String MEDIA_TYPE = "application/json";
 
     @PostMapping
-    @Operation( operationId = "creation-brand", description = "Creation of brand.")
+    @Operation( operationId = "create", description = "One creation.")
     @ApiResponse(responseCode = "201", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = BrandDto.class)))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
-    default ResponseEntity<BrandDto> create(@Valid @RequestBody BrandDto entity) {
+    default ResponseEntity<T> create(@Valid @RequestBody T entity) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @PostMapping("/bulkCreate")
-    @Operation( operationId = "create-brands", description = "Create brands.")
+    @Operation( operationId = "create-bulk", description = "Mass creation.")
     @ApiResponse(responseCode = "201", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
-    default  ResponseEntity<List<BrandDto>> createAll(@RequestBody List<BrandDto> entities) {
+    default  ResponseEntity<List<T>> createAll(@RequestBody List<T> entities) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @PutMapping("/{id}")
-    @Operation( operationId = "update-brand", description = "Update brand.")
+    @Operation( operationId = "update", description = "One update.")
     @ApiResponse(responseCode = "201", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = BrandDto.class)))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
-    default ResponseEntity<BrandDto> update(@Valid @RequestBody BrandDto entity, @PathVariable String id) {
+    default ResponseEntity<T> update(@Valid @RequestBody T entity, @PathVariable String id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @PutMapping("/bulkUpdate")
-    @Operation( operationId = "update-brands", description = "Update brands.")
+    @Operation( operationId = "update-bulk", description = "Mass Update.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
-    default ResponseEntity<List<BrandDto>> updateAll(@RequestBody List<BrandDto> entities){
+    default ResponseEntity<List<T>> updateAll(@RequestBody List<T> entities){
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @GetMapping("/{id}")
-    @Operation( operationId = "get-brand-by-id", description = "Get brand by id.")
+    @Operation( operationId = "get-by-id", description = "Get by id.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = BrandDto.class)))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
-    default ResponseEntity<BrandDto> findById(@PathVariable String id) {
+    default ResponseEntity<T> findById(@PathVariable String id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @GetMapping("/getByIds")
-    @Operation( operationId = "get-brands-by-ids", description = "Get brands by ids.")
+    @Operation( operationId = "get-by-ids", description = "Get by ids.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "400", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "404", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE, schema = @Schema(implementation = MessageResponseDTO.class)))
-    default ResponseEntity<List<BrandDto>> findByIds(@RequestParam List<String> ids) {
+    default ResponseEntity<List<T>> findByIds(@RequestParam List<String> ids) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @DeleteMapping("/{id}")
-    @Operation( operationId = "delete-brand", description = "Delete brand by id.")
+    @Operation( operationId = "delete", description = "Delete by id.")
     @ApiResponse(responseCode = "204", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = Void.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
@@ -101,7 +101,7 @@ public interface BrandApi {
     }
 
     @DeleteMapping("/deleteByIds")
-    @Operation( operationId = "delete-all-brands", description = "Delete brands by ids.")
+    @Operation( operationId = "delete-by-ids", description = "Delete by ids.")
     @ApiResponse(responseCode = "204", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = Void.class)))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
@@ -112,26 +112,26 @@ public interface BrandApi {
     }
 
     @GetMapping("/paginated")
-    @Operation( operationId = "get-brands-paginated", description = "Get brands paginated.")
+    @Operation( operationId = "get-paginated", description = "Get paginated.")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
-    default ResponseEntity<List<BrandDto>> findAllPaginated(
+    default ResponseEntity<List<T>> findAllPaginated(
             @RequestParam(required = true, defaultValue = "0") int page,
             @RequestParam(required = true, defaultValue = "10") int size,
-            @RequestParam(required = true, defaultValue = "name") String sort,
-            @RequestParam(required = true, defaultValue = "ASC")SortEnumDTO direction) {
+            @RequestParam(required = false, defaultValue = "name") String sort,
+            @RequestParam(required = true, defaultValue = "ASC") SortEnumDTO direction) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @GetMapping("/brandFilter")
-    @Operation( operationId = "get-brand-by-filter", description = "Get brand by filter.")
+    @Operation( operationId = "list-with-filters-pagination", description = "List with filters and pagination")
     @ApiResponse(responseCode = "200", content = @Content(mediaType = MEDIA_TYPE,  array = @ArraySchema(schema = @Schema(implementation = BrandDto.class))))
     @ApiResponse(responseCode = "401", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "403", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
     @ApiResponse(responseCode = "500", content = @Content(mediaType = MEDIA_TYPE,  schema = @Schema(implementation = MessageResponseDTO.class)))
-    default ResponseEntity<List<BrandDto>> filters(
+    default ResponseEntity<List<T>> filters(
             @RequestParam(required = false, defaultValue = "{\"name\":\"WOULD\", \"description\":\"WOULD SPORTSWEAR\", \"isActive\":true}") String filterProperties,
             @RequestParam(required = true, defaultValue = "0") int page,
             @RequestParam(required = true, defaultValue = "10") int size,

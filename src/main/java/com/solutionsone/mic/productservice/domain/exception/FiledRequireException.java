@@ -9,8 +9,8 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class FiledRequireException extends RuntimeException {
 
-    private String code;
-    private List<String> details;
+    private final String code;
+    private final List<String> details;
 
     public FiledRequireException(String code, String message, List<String> details) {
         super(message);

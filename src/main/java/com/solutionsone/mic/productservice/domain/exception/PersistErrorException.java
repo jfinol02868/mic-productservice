@@ -7,9 +7,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class PersistErrorException extends RuntimeException{
 
-    private String code;
+    private final String code;
 
-    public PersistErrorException() {}
+    public PersistErrorException(String code) {
+        this.code = code;
+    }
 
     public PersistErrorException(String code, String message) {
         super(message);

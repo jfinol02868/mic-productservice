@@ -7,9 +7,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class PageNotValidException extends RuntimeException {
 
-    private String code;
+    private final String code;
 
-    public PageNotValidException() {}
+    public PageNotValidException(String code) {
+        this.code = code;
+    }
 
     public PageNotValidException(String code, String message) {
         super(message);

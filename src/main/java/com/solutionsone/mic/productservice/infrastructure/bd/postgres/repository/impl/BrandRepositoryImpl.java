@@ -31,6 +31,7 @@ public class BrandRepositoryImpl implements BrandRepository {
     private final IdGenerator idGenerator;
     private final BrandEntityMapper mapper;
     private final BrandRepositoryAdapter repository;
+    private static String RECORD_NOT_FOUND_BY_ID = "La marca con id: %s no existe.";
 
     @Override
     public Brand create(Brand entity) {
@@ -48,32 +49,27 @@ public class BrandRepositoryImpl implements BrandRepository {
     @Override
     public Brand update(Brand entity, String id) {
         Optional<BrandEntity> brandEntity = repository.findById(id);
-        brandEntity.ifPresentOrElse(
-                brand -> { entity.setId(brandEntity.get().getId());
-                    BeanUtils.copyProperties(entity, brand);
-                    repository.save(mapper.toEntity(entity));
-                }, () -> {
-                    throw new EntityNotFoundException("EN001", "La marca con id: ".concat(id).concat(" no existe."));
-                }
+        return brandEntity.map(brand -> {
+            BeanUtils.copyProperties(entity, brand);
+            return mapper.toModel(repository.save(mapper.toEntity(entity)));
+        }).orElseThrow(() ->
+                new EntityNotFoundException("EN001", String.format(RECORD_NOT_FOUND_BY_ID, id))
         );
-       return mapper.toModel(brandEntity.get());
     }
 
     @Override
     public List<Brand> updateAll(List<Brand> entities) {
-        entities.forEach( entity -> { this.update(entity, entity.getId()); } );
         return mapper.toModels(repository.saveAll(mapper.toEntities(entities)));
     }
 
     @Override
     public Brand findById(String id) {
         return mapper.toModel(repository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("EN001", "La marca con id: ".concat(id).concat(" no existe."))));
+                () -> new EntityNotFoundException("EN001", String.format(RECORD_NOT_FOUND_BY_ID, id))));
     }
 
     @Override
     public List<Brand> findByIds(List<String> ids) {
-        ids.forEach(this::findById);
         return mapper.toModels(repository.findAllById(ids));
     }
 
@@ -106,8 +102,8 @@ public class BrandRepositoryImpl implements BrandRepository {
     public List<Brand> filters(Brand object, int page, int size, String direction, String... sortProperties) {
         Pageable pageable = null;
         Specification<BrandEntity> spec = DynamicSpecification.byFields(object);
-        Sort.Direction dir = Sort.Direction.fromString(direction);
         try{
+            Sort.Direction dir = Sort.Direction.fromString(direction);
             pageable = PageRequest.of(page, size, Sort.by(dir, sortProperties));
         }catch (IllegalArgumentException e){
             throw new PageNotValidException(ERROR_PAGINATED.getCode(),ERROR_PAGINATED.getMessage());

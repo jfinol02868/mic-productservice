@@ -21,7 +21,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @RequestMapping("/api/v1/brands")
 @Tags(value = {@Tag(name = "Brand", description = "Brand API")})
-public class BrandController implements BrandApi {
+public class BrandController implements BrandApi<BrandDto> {
 
     private final BrandUserCase useCase;
     private final BrandDtoMapper mapper;

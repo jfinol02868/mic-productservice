@@ -1,5 +1,6 @@
 package com.solutionsone.mic.productservice.infrastructure.bd.util;
 
+import com.solutionsone.mic.productservice.domain.exception.AccessToFieldException;
 import com.solutionsone.mic.productservice.infrastructure.bd.postgres.entity.BrandEntity;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -13,6 +14,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class DynamicSpecification {
+
+    private DynamicSpecification() {}
 
     public static Specification<BrandEntity> byFields(Object filterObject) {
 
@@ -29,10 +32,9 @@ public class DynamicSpecification {
                         predicates.add(criteriaBuilder.equal(root.get(field.getName()), value));
                     }
                 } catch (IllegalAccessException e) {
-                    throw new RuntimeException("Error al acceder al campo: " + field.getName());
+                    throw new AccessToFieldException("AC001", "Error al acceder al campo: ".concat(field.getName()));
                 }
             }
-
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }

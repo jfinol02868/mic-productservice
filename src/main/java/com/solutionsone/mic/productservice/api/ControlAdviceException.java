@@ -13,6 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -98,6 +99,17 @@ public class ControlAdviceException {
                         .map(fieldError -> fieldError.getField().concat(": ")
                                 .concat(Objects.requireNonNull(fieldError.getDefaultMessage())))
                         .toList())
+                .timeStamp(ZonedDateTime.now(ZoneId.of("UTC")))
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(AccessToFieldException.class)
+    public MessageResponseDTO handlerMethodArgumentNotValidException(AccessToFieldException e) {
+        return MessageResponseDTO.builder()
+                .code(e.getCode())
+                .message(e.getMessage())
+                .details(new ArrayList<>())
                 .timeStamp(ZonedDateTime.now(ZoneId.of("UTC")))
                 .build();
     }

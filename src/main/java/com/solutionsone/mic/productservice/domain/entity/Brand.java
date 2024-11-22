@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,4 +19,8 @@ public class Brand {
     private String logoUrl;
     private String websiteUrl;
     private Boolean isActive;
+
+    public boolean idNotNull() {
+        return Objects.nonNull(this.id);
+    }
 }
