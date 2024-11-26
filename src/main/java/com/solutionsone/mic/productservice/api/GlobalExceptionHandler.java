@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestControllerAdvice
-public class ControlAdviceException {
+public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(PageNotValidException.class)
