@@ -9,11 +9,11 @@ public enum Message {
     ERROR_MAPPING("MP001", "Una excepción ocurrió al mapear el objeto, verifique las propiedades que esta enviando en su filterProperties."),
     BRAND_NOT_FOUND("EN001", "La marca con id: %s no existe.");
 
-    private final String message;
+    private final String value;
     private final String code;
 
-    Message( String code, String message) {
-        this.message = message;
+    Message( String code, String value) {
+        this.value = value;
         this.code = code;
     }
 }
