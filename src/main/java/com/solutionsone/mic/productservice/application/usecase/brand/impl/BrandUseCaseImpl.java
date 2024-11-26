@@ -1,6 +1,6 @@
-package com.solutionsone.mic.productservice.application.usercase.impl;
+package com.solutionsone.mic.productservice.application.usecase.brand.impl;
 
-import com.solutionsone.mic.productservice.application.usercase.BrandUserCase;
+import com.solutionsone.mic.productservice.application.usecase.brand.BrandUserCase;
 import com.solutionsone.mic.productservice.domain.entity.Brand;
 import com.solutionsone.mic.productservice.domain.repository.BrandRepository;
 import com.solutionsone.mic.productservice.domain.util.MapperUtil;

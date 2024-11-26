@@ -1,4 +1,4 @@
-package com.solutionsone.mic.productservice.application.usercase;
+package com.solutionsone.mic.productservice.application.usecase;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@ import com.solutionsone.mic.productservice.api.service.BrandApi;
 import com.solutionsone.mic.productservice.api.service.dto.BrandDto;
 import com.solutionsone.mic.productservice.api.service.dto.SortEnumDTO;
 import com.solutionsone.mic.productservice.api.service.mapper.BrandDtoMapper;
-import com.solutionsone.mic.productservice.application.usercase.BrandUserCase;
+import com.solutionsone.mic.productservice.application.usecase.brand.BrandUserCase;
 import com.solutionsone.mic.productservice.domain.exception.FiledRequireException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
