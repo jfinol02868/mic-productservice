@@ -10,12 +10,12 @@ import static com.solutionsone.mic.productservice.domain.util.Message.ERROR_MAPP
 @Component
 public class MapperUtil {
 
-    public <T> Object mappingEntity(String filterProperties, Class<?> clazz) {
+    public  Object mappingEntity(String filterProperties, Class<?> clazz) {
         ObjectMapper mapping = new ObjectMapper();
         try {
             return mapping.readValue(filterProperties, clazz);
         } catch (JsonProcessingException e) {
-            throw new ErrorMappingException(ERROR_MAPPING.getCode(), ERROR_MAPPING.getMessage());
+            throw new ErrorMappingException(ERROR_MAPPING.getCode(), ERROR_MAPPING.getValue());
         }
     }
 }

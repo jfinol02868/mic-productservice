@@ -54,7 +54,7 @@ public class BrandRepositoryImpl implements BrandRepository {
             return mapper.toModel(repository.save(mapper.toEntity(entity)));
         }).orElseThrow(() ->
                 new EntityNotFoundException(BRAND_NOT_FOUND.getCode() ,
-                        String.format(BRAND_NOT_FOUND.getMessage(), id))
+                        String.format(BRAND_NOT_FOUND.getValue(), id))
         );
     }
 
@@ -67,7 +67,7 @@ public class BrandRepositoryImpl implements BrandRepository {
     public Brand findById(Long id) {
         return mapper.toModel(repository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException(BRAND_NOT_FOUND.getCode(),
-                        String.format(BRAND_NOT_FOUND.getMessage(), id))));
+                        String.format(BRAND_NOT_FOUND.getValue(), id))));
     }
 
     @Override
@@ -95,7 +95,7 @@ public class BrandRepositoryImpl implements BrandRepository {
         try{
             pageable = PageRequest.of(page, size, Sort.by(dir, sort));
         }catch (IllegalArgumentException e){
-            throw new PageNotValidException(ERROR_PAGINATED.getCode(),ERROR_PAGINATED.getMessage());
+            throw new PageNotValidException(ERROR_PAGINATED.getCode(),ERROR_PAGINATED.getValue());
         }
         return mapper.toModels(repository.findAll(pageable).getContent());
     }
@@ -108,7 +108,7 @@ public class BrandRepositoryImpl implements BrandRepository {
             Sort.Direction dir = Sort.Direction.fromString(direction);
             pageable = PageRequest.of(page, size, Sort.by(dir, sortProperties));
         }catch (IllegalArgumentException e){
-            throw new PageNotValidException(ERROR_PAGINATED.getCode(),ERROR_PAGINATED.getMessage());
+            throw new PageNotValidException(ERROR_PAGINATED.getCode(),ERROR_PAGINATED.getValue());
         }
         return mapper.toModels(repository.findAll(spec, pageable).getContent());
     }
