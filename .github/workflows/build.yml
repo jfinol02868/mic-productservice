@@ -54,7 +54,7 @@ jobs:
 
       - name: Set environment variables for PostgreSQL
         run: |
-          echo "DB_URL=jdbc:postgresql://localhost:5432/mic_productservice" >> $GITHUB_ENV
+          echo "DB_URL=jdbc:postgresql://localhost:5432/productservice" >> $GITHUB_ENV
           echo "DB_USERNAME=postgres" >> $GITHUB_ENV
           echo "DB_PASSWORD=password" >> $GITHUB_ENV
 
