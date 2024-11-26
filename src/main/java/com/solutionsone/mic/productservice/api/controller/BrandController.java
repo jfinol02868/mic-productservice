@@ -38,7 +38,7 @@ public class BrandController implements BrandApi<BrandDto> {
     }
 
     @Override
-    public ResponseEntity<BrandDto> update(BrandDto entity, String id) {
+    public ResponseEntity<BrandDto> update(BrandDto entity, Long id) {
         return new ResponseEntity<>(mapper.toDto(useCase.update(mapper.toModel(entity), id)), HttpStatus.OK);
     }
 
@@ -49,23 +49,23 @@ public class BrandController implements BrandApi<BrandDto> {
     }
 
     @Override
-    public ResponseEntity<BrandDto> findById(String id) {
+    public ResponseEntity<BrandDto> findById(Long id) {
         return new ResponseEntity<>(mapper.toDto(useCase.findById(id)), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<List<BrandDto>> findByIds(List<String> ids) {
+    public ResponseEntity<List<BrandDto>> findByIds(List<Long> ids) {
         return  new ResponseEntity<>(mapper.toDtoList(useCase.findByIds(ids)), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Void> delete(String id) {
+    public ResponseEntity<Void> delete(Long id) {
         useCase.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
-    public ResponseEntity<Void> deleteAll(List<String> ids) {
+    public ResponseEntity<Void> deleteAll(List<Long> ids) {
         useCase.deleteAll(ids);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

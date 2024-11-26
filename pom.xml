@@ -51,14 +51,6 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.apache.kafka</groupId>-->
-<!--			<artifactId>kafka-streams</artifactId>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.kafka</groupId>-->
-<!--			<artifactId>spring-kafka</artifactId>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -79,12 +71,6 @@
 			<artifactId>xmlunit-core</artifactId>
 			<version>2.10.0</version>
 		</dependency>
-
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.kafka</groupId>-->
-<!--			<artifactId>spring-kafka-test</artifactId>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
@@ -101,6 +87,19 @@
 			<version>${lombok-maven-plugin.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<!--		<dependency>-->
+		<!--			<groupId>org.apache.kafka</groupId>-->
+		<!--			<artifactId>kafka-streams</artifactId>-->
+		<!--		</dependency>-->
+		<!--		<dependency>-->
+		<!--			<groupId>org.springframework.kafka</groupId>-->
+		<!--			<artifactId>spring-kafka</artifactId>-->
+		<!--		</dependency>-->
+		<!--		<dependency>-->
+		<!--			<groupId>org.springframework.kafka</groupId>-->
+		<!--			<artifactId>spring-kafka-test</artifactId>-->
+		<!--			<scope>test</scope>-->
+		<!--		</dependency>-->
 <!--		<dependency>-->
 <!--			<groupId>org.apache.avro</groupId>-->
 <!--			<artifactId>avro</artifactId>-->

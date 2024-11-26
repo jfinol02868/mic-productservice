@@ -1,9 +1,6 @@
 package com.solutionsone.mic.productservice.infrastructure.bd.postgres.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.TypeAlias;
 
@@ -21,7 +18,8 @@ public class BrandEntity extends Auditable {
 
     @Id
     @Column(name = "id", nullable = false, unique = true, length = 100)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;

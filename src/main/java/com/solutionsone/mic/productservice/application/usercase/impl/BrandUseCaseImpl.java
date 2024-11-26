@@ -27,7 +27,7 @@ public class BrandUseCaseImpl implements BrandUserCase {
     }
 
     @Override
-    public Brand update(Brand entity, String id) {
+    public Brand update(Brand entity, Long id) {
         return repository.update(entity, id);
     }
 
@@ -37,22 +37,22 @@ public class BrandUseCaseImpl implements BrandUserCase {
     }
 
     @Override
-    public Brand findById(String id) {
+    public Brand findById(Long id) {
         return repository.findById(id);
     }
 
     @Override
-    public List<Brand> findByIds(List<String> ids) {
+    public List<Brand> findByIds(List<Long> ids) {
         return repository.findByIds(ids);
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
         repository.delete(id);
     }
 
     @Override
-    public void deleteAll(List<String> ids) {
+    public void deleteAll(List<Long> ids) {
         repository.deleteAll(ids);
     }
 

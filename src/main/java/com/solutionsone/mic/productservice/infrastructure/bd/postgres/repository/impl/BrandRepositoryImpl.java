@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.solutionsone.mic.productservice.domain.util.Message.ERROR_PAGINATED;
+import static com.solutionsone.mic.productservice.domain.util.Message.BRAND_NOT_FOUND;
 
 @Repository
 @AllArgsConstructor
@@ -31,29 +32,29 @@ public class BrandRepositoryImpl implements BrandRepository {
     private final IdGenerator idGenerator;
     private final BrandEntityMapper mapper;
     private final BrandRepositoryAdapter repository;
-    private static String RECORD_NOT_FOUND_BY_ID = "La marca con id: %s no existe.";
 
     @Override
     public Brand create(Brand entity) {
-        entity.setId(idGenerator.generateId(BrandEntity.class));
         return mapper.toModel(repository.save(mapper.toEntity(entity)));
     }
 
     @Override
     @Transactional(rollbackOn = PersistErrorException.class)
     public List<Brand> createAll(List<Brand> entities) {
-        entities.forEach(entity -> entity.setId(idGenerator.generateId(BrandEntity.class)));
         return mapper.toModels(repository.saveAll(mapper.toEntities(entities)));
     }
 
     @Override
-    public Brand update(Brand entity, String id) {
+    public Brand update(Brand entity, Long id) {
+
         Optional<BrandEntity> brandEntity = repository.findById(id);
+
         return brandEntity.map(brand -> {
             BeanUtils.copyProperties(entity, brand);
             return mapper.toModel(repository.save(mapper.toEntity(entity)));
         }).orElseThrow(() ->
-                new EntityNotFoundException("EN001", String.format(RECORD_NOT_FOUND_BY_ID, id))
+                new EntityNotFoundException(BRAND_NOT_FOUND.getCode() ,
+                        String.format(BRAND_NOT_FOUND.getMessage(), id))
         );
     }
 
@@ -63,25 +64,26 @@ public class BrandRepositoryImpl implements BrandRepository {
     }
 
     @Override
-    public Brand findById(String id) {
+    public Brand findById(Long id) {
         return mapper.toModel(repository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("EN001", String.format(RECORD_NOT_FOUND_BY_ID, id))));
+                () -> new EntityNotFoundException(BRAND_NOT_FOUND.getCode(),
+                        String.format(BRAND_NOT_FOUND.getMessage(), id))));
     }
 
     @Override
-    public List<Brand> findByIds(List<String> ids) {
+    public List<Brand> findByIds(List<Long> ids) {
         return mapper.toModels(repository.findAllById(ids));
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
         this.findById(id);
         repository.deleteById(id);
     }
 
     @Override
     @Transactional
-    public void deleteAll(List<String> ids) {
+    public void deleteAll(List<Long> ids) {
         ids.forEach(this::findById);
         repository.deleteAllById(ids);
     }

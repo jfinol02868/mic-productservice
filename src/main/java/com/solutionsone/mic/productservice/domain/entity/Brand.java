@@ -13,7 +13,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public class Brand {
 
-    private String id;
+    private Long id;
     private String name;
     private String description;
     private String logoUrl;
