@@ -7,17 +7,13 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class EntityNotFoundException extends RuntimeException{
 
-    private String code;
+    private final String code;
 
-    public EntityNotFoundException() {
-        super();
+    public EntityNotFoundException(String code) {
+        this.code = code;
     }
 
-    public EntityNotFoundException(String message) {
-        super(message);
-    }
-
-    public EntityNotFoundException(String message, String code) {
+    public EntityNotFoundException(String code, String message) {
         super(message);
         this.code = code;
     }

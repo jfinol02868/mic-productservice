@@ -7,9 +7,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class ErrorMappingException extends RuntimeException {
 
-    private String code;
+    private final String code;
 
-    public ErrorMappingException() {}
+    public ErrorMappingException(String code) {
+        this.code = code;
+    }
 
     public ErrorMappingException(String code, String message) {
         super(message);

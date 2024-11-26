@@ -10,7 +10,7 @@ import static com.solutionsone.mic.productservice.domain.util.Message.ERROR_MAPP
 @Component
 public class MapperUtil {
 
-    public  Object mappingEntity(String filterProperties, Class<?> clazz) {
+    public Object mappingEntity(String filterProperties, Class<?> clazz) {
         ObjectMapper mapping = new ObjectMapper();
         try {
             return mapping.readValue(filterProperties, clazz);
