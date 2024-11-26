@@ -33,7 +33,8 @@ public class DynamicSpecification {
                         predicates.add(criteriaBuilder.equal(root.get(field.getName()), value));
                     }
                 } catch (IllegalAccessException e) {
-                    throw new AccessToFieldException(ACCESS_FIELD_ERROR.getCode(), String.format(ACCESS_FIELD_ERROR.getValue(), field.getName()));
+                    throw new AccessToFieldException(ACCESS_FIELD_ERROR.getCode(),
+                            String.format(ACCESS_FIELD_ERROR.getValue(), field.getName()));
                 }
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
