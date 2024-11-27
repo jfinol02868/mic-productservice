@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "AuditEntity",
+  "namespace": "com.solutionsone.mic.productservice.kafka.avro",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "action",
+      "type": "string"
+    },
+    {
+      "name": "user",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "name": "component",
+      "type": "string"
+    }
+  ]
+}

@@ -1,10 +1,11 @@
 CREATE TABLE public.brands (
 	id varchar(255) NOT NULL,
 	created_date timestamp(6) NOT NULL,
-	description varchar(255) NULL,
+	description varchar2(255) NULL,
 	is_active bool NOT NULL,
-	logo_url varchar(255) NULL,
-	"name" varchar(255) NOT NULL,
+	logo_url varchar2(255) NULL,
+	website_url varchar2(255) NULL,
+	"name" varchar2(255) NOT NULL,
 	updated_date timestamp(6) NULL,
 	CONSTRAINT brands_pkey PRIMARY KEY (id)
 );

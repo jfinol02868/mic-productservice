@@ -1,16 +1,9 @@
 package com.solutionsone.mic.productservice.infrastructure.bd.postgres.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.data.annotation.TypeAlias;
 
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 
 @Data
@@ -19,11 +12,14 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "brands")
-public class BrandEntity {
+@TypeAlias("BrandEntity")
+@EqualsAndHashCode(callSuper = true)
+public class BrandEntity extends Auditable {
 
     @Id
     @Column(name = "id", nullable = false, unique = true, length = 100)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -36,12 +32,6 @@ public class BrandEntity {
 
     @Column(name = "website_url")
     private String websiteUrl;
-
-    @Column(name = "created_date", nullable = false)
-    private ZonedDateTime createdDate;
-
-    @Column(name = "updated_date")
-    private ZonedDateTime updatedDate;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;

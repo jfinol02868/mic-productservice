@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.util.Objects;
 
 @Data
 @Builder
@@ -13,12 +13,14 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 public class Brand {
 
-    private String id;
+    private Long id;
     private String name;
     private String description;
     private String logoUrl;
     private String websiteUrl;
-    private ZonedDateTime createdDate;
-    private ZonedDateTime updatedDate;
     private Boolean isActive;
+
+    public boolean idNotNull() {
+        return Objects.nonNull(this.id);
+    }
 }
