@@ -9,7 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class DynamicSpecificationTest {
-
+  
         @Test
         @DisplayName("Test by Fields.")
         void testByFields() {
