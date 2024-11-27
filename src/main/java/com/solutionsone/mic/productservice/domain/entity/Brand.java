@@ -19,8 +19,4 @@ public class Brand {
     private String logoUrl;
     private String websiteUrl;
     private Boolean isActive;
-
-    public boolean idNotNull() {
-        return Objects.nonNull(this.id);
-    }
 }

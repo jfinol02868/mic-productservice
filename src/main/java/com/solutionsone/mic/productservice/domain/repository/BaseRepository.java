@@ -22,6 +22,5 @@ public interface BaseRepository<T, K> {
 
     default List<T> findAllPaginated(int page, int size, String sort, String direction) { return List.of(); }
 
-    default List<T> filters(T object, int page, int size, String direction, String... sortProperties){return  List.of(); }
-
+    default List<T> filters(T object, int page, int size, String direction, String... sortProperties){return  List.of();}
 }
