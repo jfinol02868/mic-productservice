@@ -2,6 +2,7 @@ package com.solutionsone.mic.productservice.api;
 
 import com.solutionsone.mic.productservice.api.service.dto.MessageResponseDTO;
 import com.solutionsone.mic.productservice.domain.exception.*;
+import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -59,7 +60,9 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(
                 MessageResponseDTO.builder()
                         .code(ex.getCode())
-                        .details(List.of())
+                        .details(List.of(
+                                "Asegurese de que el id que esta enviando exista en la base de datos.",
+                                "Si envió mas de un registro, recuerde que no se eliminara ninguno si no coinciden todos."))
                         .message(ex.getMessage())
                         .timeStamp(ZonedDateTime.now(ZoneId.of("UTC")))
                         .build(), HttpStatus.NOT_FOUND);
@@ -110,6 +113,17 @@ public class GlobalExceptionHandler {
                 .code(e.getCode())
                 .message(e.getMessage())
                 .details(new ArrayList<>())
+                .timeStamp(ZonedDateTime.now(ZoneId.of("UTC")))
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(PropertyReferenceException.class)
+    public MessageResponseDTO handlerPropertyReferenceException(PropertyReferenceException e) {
+        return MessageResponseDTO.builder()
+                .code("PR001")
+                .message("Esta enviando alguna propiedad de forma incorrecta.")
+                .details(new ArrayList<>(List.of(e.getPropertyName())))
                 .timeStamp(ZonedDateTime.now(ZoneId.of("UTC")))
                 .build();
     }

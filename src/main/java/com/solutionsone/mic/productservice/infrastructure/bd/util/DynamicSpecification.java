@@ -28,6 +28,7 @@ public class DynamicSpecification {
 
             for (Field field : fields) {
                 try {
+                    field.setAccessible(true);
                     Object value = field.get(filterObject);
                     if (Objects.nonNull(value)) {
                         predicates.add(criteriaBuilder.equal(root.get(field.getName()), value));

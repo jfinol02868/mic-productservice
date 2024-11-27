@@ -1,6 +1,8 @@
 package com.solutionsone.mic.productservice.infrastructure.bd.postgres.repository.impl;
 
 import com.solutionsone.mic.productservice.domain.entity.Brand;
+import com.solutionsone.mic.productservice.domain.exception.EntityNotFoundException;
+import com.solutionsone.mic.productservice.domain.exception.PageNotValidException;
 import com.solutionsone.mic.productservice.infrastructure.bd.postgres.entity.BrandEntity;
 import com.solutionsone.mic.productservice.infrastructure.bd.postgres.mapper.BrandEntityMapper;
 import com.solutionsone.mic.productservice.infrastructure.bd.postgres.repository.BrandRepositoryAdapter;
@@ -20,8 +22,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static com.solutionsone.mic.productservice.domain.util.Message.BRAND_NOT_FOUND;
+import static com.solutionsone.mic.productservice.domain.util.Message.ERROR_PAGINATED;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.*;
 
@@ -298,4 +302,62 @@ class BrandRepositoryImplTest {
         verify(mapper).toModels(anyList());
     }
 
+    @Test
+    @DisplayName("Repository ->> Brand by id not fount.")
+    void testFindByIdNotFount() {
+
+        // Arrange
+        Long nonExistentId = 999L;
+        when(repository.findById(nonExistentId)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> {
+            brandRepositoryImpl.findById(nonExistentId);
+        });
+
+        assertEquals(BRAND_NOT_FOUND.getCode(), exception.getCode());
+        assertEquals(String.format(BRAND_NOT_FOUND.getValue(), nonExistentId), exception.getMessage());
+        verify(repository).findById(nonExistentId);
+    }
+
+    @Test
+    @DisplayName("Repository ->> Page no valid exception.")
+    void testFindAllPaginatedErrorPaginated() {
+
+        // Arrange
+        int page = 0;
+        int size = 2;
+        String sort = "name";
+        String direction = "INVALID_DIRECTION";
+
+        // Act
+        PageNotValidException exception = assertThrows(PageNotValidException.class, () -> {
+            brandRepositoryImpl.findAllPaginated(page, size, sort, direction);
+        });
+
+        // Assert
+        assertEquals(ERROR_PAGINATED.getCode(), exception.getCode());
+        assertEquals(ERROR_PAGINATED.getValue(), exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Repository ->> Page not valid exception in filters method.")
+    void testFilterErrorPaginated() {
+
+        // Arrange
+        Brand filterObject = Brand.builder().name("Calvin Klein").build();
+        int page = 0;
+        int size = 2;
+        String direction = "INVALID_DIRECTION";
+        String[] sortProperties = {"name"};
+
+        // Act
+        PageNotValidException exception = assertThrows(PageNotValidException.class, () -> {
+            brandRepositoryImpl.filters(filterObject, page, size, direction, sortProperties);
+        });
+
+        // Assert
+        assertEquals(ERROR_PAGINATED.getCode(), exception.getCode());
+        assertEquals(ERROR_PAGINATED.getValue(), exception.getMessage());
+    }
 }

@@ -17,7 +17,6 @@ import org.springframework.data.annotation.TypeAlias;
 public class BrandEntity extends Auditable {
 
     @Id
-    @Column(name = "id", nullable = false, unique = true, length = 100)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
