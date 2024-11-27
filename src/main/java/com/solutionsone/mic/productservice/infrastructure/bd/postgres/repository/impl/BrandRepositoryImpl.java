@@ -20,10 +20,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
-import static com.solutionsone.mic.productservice.domain.util.Message.ERROR_PAGINATED;
 import static com.solutionsone.mic.productservice.domain.util.Message.BRAND_NOT_FOUND;
+import static com.solutionsone.mic.productservice.domain.util.Message.ERROR_PAGINATED;
 
 @Repository
 @AllArgsConstructor
@@ -46,20 +45,17 @@ public class BrandRepositoryImpl implements BrandRepository {
 
     @Override
     public Brand update(Brand entity, Long id) {
+        Brand brandEntity = this.findById(id);
+        entity.setId(id);
+        BeanUtils.copyProperties(entity, brandEntity);
+        return mapper.toModel(repository.save(mapper.toEntity(brandEntity)));
 
-        Optional<BrandEntity> brandEntity = repository.findById(id);
-
-        return brandEntity.map(brand -> {
-            BeanUtils.copyProperties(entity, brand);
-            return mapper.toModel(repository.save(mapper.toEntity(entity)));
-        }).orElseThrow(() ->
-                new EntityNotFoundException(BRAND_NOT_FOUND.getCode() ,
-                        String.format(BRAND_NOT_FOUND.getValue(), id))
-        );
     }
 
     @Override
+    @Transactional(rollbackOn = PersistErrorException.class)
     public List<Brand> updateAll(List<Brand> entities) {
+        entities.forEach(brand -> this.findById(brand.getId()));
         return mapper.toModels(repository.saveAll(mapper.toEntities(entities)));
     }
 
@@ -71,7 +67,9 @@ public class BrandRepositoryImpl implements BrandRepository {
     }
 
     @Override
+    @Transactional(rollbackOn = PersistErrorException.class)
     public List<Brand> findByIds(List<Long> ids) {
+        ids.forEach(this::findById);
         return mapper.toModels(repository.findAllById(ids));
     }
 
@@ -82,7 +80,7 @@ public class BrandRepositoryImpl implements BrandRepository {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackOn = PersistErrorException.class)
     public void deleteAll(List<Long> ids) {
         ids.forEach(this::findById);
         repository.deleteAllById(ids);
@@ -90,19 +88,19 @@ public class BrandRepositoryImpl implements BrandRepository {
 
     @Override
     public List<Brand> findAllPaginated(int page, int size, String sort, String direction) {
-        Pageable pageable = null;
-        Sort.Direction dir = Sort.Direction.fromString(direction);
-        try{
+        Pageable pageable;
+        try {
+            Sort.Direction dir = Sort.Direction.fromString(direction);
             pageable = PageRequest.of(page, size, Sort.by(dir, sort));
-        }catch (IllegalArgumentException e){
-            throw new PageNotValidException(ERROR_PAGINATED.getCode(),ERROR_PAGINATED.getValue());
+        } catch (IllegalArgumentException e) {
+            throw new PageNotValidException(ERROR_PAGINATED.getCode(), ERROR_PAGINATED.getValue());
         }
         return mapper.toModels(repository.findAll(pageable).getContent());
     }
 
     @Override
     public List<Brand> filters(Brand object, int page, int size, String direction, String... sortProperties) {
-        Pageable pageable = null;
+        Pageable pageable;
         Specification<BrandEntity> spec = DynamicSpecification.byFields(object);
         try{
             Sort.Direction dir = Sort.Direction.fromString(direction);

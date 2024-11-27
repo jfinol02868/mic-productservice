@@ -8,6 +8,7 @@ import com.solutionsone.mic.productservice.application.usecase.brand.BrandUserCa
 import com.solutionsone.mic.productservice.domain.exception.FiledRequireException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Objects;
+
+import static com.solutionsone.mic.productservice.domain.util.Message.FIELD_REQUIRE;
 
 @RestController
 @AllArgsConstructor
@@ -65,6 +68,7 @@ public class BrandController implements BrandApi<BrandDto> {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Void> deleteAll(List<Long> ids) {
         useCase.deleteAll(ids);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -87,8 +91,8 @@ public class BrandController implements BrandApi<BrandDto> {
         boolean ifNull = entities.stream().anyMatch(e -> Objects.isNull(e.getName()) || Objects.isNull(e.getIsActive()));
         if (ifNull) {
             throw new FiledRequireException(
-                    "BF001",
-                    "Revisar los campos obligatorios.",
+                    FIELD_REQUIRE.getCode(),
+                    FIELD_REQUIRE.getValue(),
                     List.of("name", "isActive"));
         }
     }
