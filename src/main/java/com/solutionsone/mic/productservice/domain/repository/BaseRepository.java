@@ -14,7 +14,7 @@ public interface BaseRepository<T, K> {
 
     default T findById(K id) { return null; }
 
-    default List<T> findByIds(List<K> id) { return List.of(); }
+    default List<T> findByIds(List<K> ids) { return List.of(); }
 
     default void delete(K id) { }
 

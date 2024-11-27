@@ -18,6 +18,11 @@ public interface CategoryDtoMapper {
     @Mapping(source = "subcategories", target = "subcategories", qualifiedByName = "mapIdsToSubcategories")
     Category toEntity(CategoryDto categoryDto);
 
+    List<CategoryDto> toDtoList(List<Category> categories);
+
+    List<Category> toEntityList(List<CategoryDto> dtos);
+
+
     @Named("mapSubcategoriesToIds")
     default List<Long> mapSubcategoriesToIds(List<CategoryEntity> subcategories) {
         if (subcategories.isEmpty()) {
