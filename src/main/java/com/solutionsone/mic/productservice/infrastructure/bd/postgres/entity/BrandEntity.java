@@ -4,14 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.TypeAlias;
 
+import java.time.ZonedDateTime;
 
 
 @Data
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "brands")
+@Entity(name = "brands")
 @TypeAlias("BrandEntity")
 @EqualsAndHashCode(callSuper = true)
 public class BrandEntity extends Auditable {
@@ -23,15 +23,30 @@ public class BrandEntity extends Auditable {
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 500)
     private String description;
 
-    @Column(name = "logo_url")
+    @Column(name = "logo_url", length = 255)
     private String logoUrl;
 
-    @Column(name = "website_url")
+    @Column(name = "website_url", length = 255)
     private String websiteUrl;
 
-    @Column(name = "is_active", nullable = false)
+    @Column(name = "is_active")
     private Boolean isActive;
+
+    @Column(name = "country_of_origin", length = 100)
+    private String countryOfOrigin;
+
+    @Column(name = "registration_date")
+    private ZonedDateTime registrationDate;
+
+    @Column(name = "is_exclusive")
+    private Boolean isExclusive;
+
+    @Column(name = "contact_info", length = 255)
+    private String contactInfo;
+
+    @Column(name = "average_rating")
+    private Double averageRating;
 }

@@ -169,8 +169,29 @@ class BrandRepositoryImplTest {
     @Test
     @DisplayName("Repository ->> Find brands by ids.")
     void testFindByIds() {
+
         // Arrange
         List<Long> ids = Arrays.asList(1L, 2L);
+
+        List<BrandEntity> entitiesToReturn = Arrays.asList(
+                BrandEntity.builder()
+                        .id(1L)
+                        .name("Calvin Klein")
+                        .description("Calvin Klein Fashion")
+                        .websiteUrl("http://www.calvinklein.com")
+                        .logoUrl("http://www.calvinklein.com/logo.png")
+                        .isActive(true)
+                        .build(),
+                BrandEntity.builder()
+                        .id(2L)
+                        .name("Guess")
+                        .description("Guess Fashion Apparel")
+                        .websiteUrl("http://www.guess.com")
+                        .logoUrl("http://www.guess.com/logo.png")
+                        .isActive(true)
+                        .build()
+        );
+
         List<Brand> brandsToFind = Arrays.asList(
                 Brand.builder()
                         .id(1L)
@@ -190,8 +211,10 @@ class BrandRepositoryImplTest {
                         .build()
         );
 
-        when(repository.findAllById(ids)).thenReturn(Arrays.asList(new BrandEntity(), new BrandEntity()));
-        when(mapper.toModels(anyList())).thenReturn(brandsToFind);
+        when(repository.findById(1L)).thenReturn(Optional.of(entitiesToReturn.get(0)));
+        when(repository.findById(2L)).thenReturn(Optional.of(entitiesToReturn.get(1)));
+        when(repository.findAllById(ids)).thenReturn(entitiesToReturn);
+        when(mapper.toModels(entitiesToReturn)).thenReturn(brandsToFind);
 
         // Act
         List<Brand> brands = brandRepositoryImpl.findByIds(ids);
@@ -200,7 +223,7 @@ class BrandRepositoryImplTest {
         assertNotNull(brands);
         assertEquals(brandsToFind.size(), brands.size());
         verify(repository).findAllById(ids);
-        verify(mapper).toModels(anyList());
+        verify(mapper).toModels(entitiesToReturn);
     }
 
     @Test

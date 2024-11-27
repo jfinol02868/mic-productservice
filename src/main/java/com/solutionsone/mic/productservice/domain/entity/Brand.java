@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.ZonedDateTime;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,5 +18,10 @@ public class Brand {
     private String description;
     private String logoUrl;
     private String websiteUrl;
-    private Boolean isActive;
+    private boolean isActive;
+    private String countryOfOrigin;
+    private ZonedDateTime registrationDate;
+    private boolean isExclusive;
+    private String contactInfo;
+    private Double averageRating;
 }
