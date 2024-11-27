@@ -2,18 +2,18 @@ spring:
   application:
     name: ProductService
 
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/productservice
-#    username: uproductservice
-#    password: micproductservice
-#    driver-class-name: org.postgresql.Driver
-#    initialization-mode: always
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/productservice
+    username: uproductservice
+    password: ${PASSWORD_DB}
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
   kafka:
     producer:
