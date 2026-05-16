@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  generateName: productservice-build-
+  namespace: develop
+spec:
+  pipelineRef: { name: productservice-build }
+  params:
+    - { name: repo-url,  value: "https://github.com/REPLACE/REPLACE.git" }
+    - { name: revision,  value: "main" }
+    - { name: image-url, value: "ghcr.io/REPLACE/REPLACE" }
+    - { name: image-tag, value: "latest" }
+  workspaces:
+    - name: source
+      volumeClaimTemplate:
+        spec:
+          accessModes: [ReadWriteOnce]
+          resources: { requests: { storage: 1Gi } }
+    - name: docker-credentials
+      secret: { secretName: nx036-registry-creds }
