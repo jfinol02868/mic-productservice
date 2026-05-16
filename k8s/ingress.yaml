@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: productservice
+  namespace: develop
+  labels:
+    app: productservice
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - productservice.nx036.com
+      secretName: wildcard-nx036-com-tls
+  rules:
+    - host: productservice.nx036.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: productservice
+                port:
+                  number: 80
