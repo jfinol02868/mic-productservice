@@ -1,0 +1,46 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: productservice-build
+  namespace: develop
+spec:
+  params:
+    - { name: repo-url,   type: string }
+    - { name: revision,   type: string, default: main }
+    - { name: image-url,  type: string, description: "<registry>/<owner>/<repo>" }
+    - { name: image-tag,  type: string, default: latest }
+    - { name: dockerfile, type: string, default: "Dockerfile" }
+  workspaces:
+    - { name: source }
+    - { name: docker-credentials, description: "Secret tipo kubernetes.io/dockerconfigjson con creds del registry" }
+  tasks:
+    - name: clone
+      taskRef: { name: git-clone, kind: ClusterTask }
+      workspaces:
+        - { name: output, workspace: source }
+      params:
+        - { name: url,      value: $(params.repo-url) }
+        - { name: revision, value: $(params.revision) }
+    - name: build-and-push
+      runAfter: [clone]
+      taskRef: { name: kaniko, kind: ClusterTask }
+      workspaces:
+        - { name: source, workspace: source }
+        - { name: dockerconfig, workspace: docker-credentials }
+      params:
+        - { name: IMAGE,      value: $(params.image-url):$(params.image-tag) }
+        - { name: DOCKERFILE, value: $(params.dockerfile) }
+        - { name: CONTEXT,    value: . }
+    - name: update-deployment
+      runAfter: [build-and-push]
+      taskSpec:
+        params:
+          - { name: image, type: string }
+        steps:
+          - name: patch
+            image: bitnami/kubectl:latest
+            script: |
+              #!/bin/sh
+              kubectl -n develop set image deployment/productservice productservice=$(params.image)
+      params:
+        - { name: image, value: $(params.image-url):$(params.image-tag) }
